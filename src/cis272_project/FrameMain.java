@@ -7,15 +7,15 @@
 package cis272_project;
 
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
-import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -25,10 +25,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.basic.BasicLookAndFeel;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.plaf.multi.MultiLookAndFeel;
-import javax.swing.plaf.synth.SynthLookAndFeel;
 
 /**
  *
@@ -319,7 +316,7 @@ public class FrameMain extends javax.swing.JFrame {
             if(transClip.isDataFlavorSupported(DataFlavor.stringFlavor)){
                 try{
                     result = (String) transClip.getTransferData(DataFlavor.stringFlavor);
-                }catch(Exception e){
+                }catch(UnsupportedFlavorException | IOException e){
                     e.printStackTrace();
                 }
             }
@@ -374,7 +371,7 @@ public class FrameMain extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
