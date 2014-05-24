@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package cis272_project;
+package cis272_project.View;
 
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
@@ -57,7 +57,9 @@ public class FrameMain extends javax.swing.JFrame {
 
         jpan_Main = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         jpan_Editor = new javax.swing.JPanel();
         jtab_Main = new javax.swing.JTabbedPane();
         jTab_Editor = new javax.swing.JScrollPane();
@@ -66,7 +68,13 @@ public class FrameMain extends javax.swing.JFrame {
         jTextPane_Source = new javax.swing.JTextPane();
         jTab_Preview = new javax.swing.JScrollPane();
         jEditorPane_Preview = new javax.swing.JEditorPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jToolBar1 = new javax.swing.JToolBar();
+        jbut_NewFile = new javax.swing.JButton();
+        jbut_OpenFile = new javax.swing.JButton();
+        jbut_SaveFile = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        jButton1 = new javax.swing.JButton();
+        jMenuBar_Main = new javax.swing.JMenuBar();
         jmenu_File = new javax.swing.JMenu();
         jmenu_newFile = new javax.swing.JMenuItem();
         jmenu_openFile = new javax.swing.JMenuItem();
@@ -76,7 +84,20 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_Edit = new javax.swing.JMenu();
         jmenu_Copy = new javax.swing.JMenuItem();
         jmenu_Paste = new javax.swing.JMenuItem();
+        jSeparator4 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jmenu_Help = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu_Style = new javax.swing.JMenu();
         jMenu_Nimbus = new javax.swing.JMenuItem();
         jMenu_Metal = new javax.swing.JMenuItem();
@@ -87,32 +108,65 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_showAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 800));
 
         jPanel1.setBackground(java.awt.SystemColor.activeCaptionBorder);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 198, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(java.awt.SystemColor.activeCaptionBorder);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 169, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 779, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(624, Short.MAX_VALUE))
         );
 
         jtab_Main.setDoubleBuffered(true);
@@ -133,14 +187,50 @@ public class FrameMain extends javax.swing.JFrame {
         jpan_Editor.setLayout(jpan_EditorLayout);
         jpan_EditorLayout.setHorizontalGroup(
             jpan_EditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
         );
         jpan_EditorLayout.setVerticalGroup(
             jpan_EditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE)
         );
 
         jtab_Main.getAccessibleContext().setAccessibleName("tab_Preview");
+
+        jToolBar1.setRollover(true);
+
+        jbut_NewFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/new.png"))); // NOI18N
+        jbut_NewFile.setText("New File");
+        jbut_NewFile.setFocusable(false);
+        jbut_NewFile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbut_NewFile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jbut_NewFile);
+
+        jbut_OpenFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/folder.png"))); // NOI18N
+        jbut_OpenFile.setText("Open File");
+        jbut_OpenFile.setFocusable(false);
+        jbut_OpenFile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbut_OpenFile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_OpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_OpenFileActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jbut_OpenFile);
+
+        jbut_SaveFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/save.png"))); // NOI18N
+        jbut_SaveFile.setText("Save File");
+        jbut_SaveFile.setFocusable(false);
+        jbut_SaveFile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbut_SaveFile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jbut_SaveFile);
+        jToolBar1.add(jSeparator3);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/globe.png"))); // NOI18N
+        jButton1.setText("  Browser");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
 
         javax.swing.GroupLayout jpan_MainLayout = new javax.swing.GroupLayout(jpan_Main);
         jpan_Main.setLayout(jpan_MainLayout);
@@ -148,27 +238,34 @@ public class FrameMain extends javax.swing.JFrame {
             jpan_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpan_MainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpan_Editor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpan_Editor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpan_MainLayout.setVerticalGroup(
             jpan_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpan_Editor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpan_MainLayout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jpan_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpan_Editor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jmenu_File.setText("File");
 
         jmenu_newFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jmenu_newFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/new.png"))); // NOI18N
         jmenu_newFile.setText("New File");
         jmenu_File.add(jmenu_newFile);
 
         jmenu_openFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jmenu_openFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/folder.png"))); // NOI18N
         jmenu_openFile.setText("Open File");
         jmenu_openFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,6 +275,7 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_File.add(jmenu_openFile);
 
         jmenu_saveFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jmenu_saveFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/save.png"))); // NOI18N
         jmenu_saveFile.setText("Save File");
         jmenu_File.add(jmenu_saveFile);
         jmenu_File.add(jSeparator1);
@@ -190,7 +288,7 @@ public class FrameMain extends javax.swing.JFrame {
         });
         jmenu_File.add(jmenu_Exit);
 
-        jMenuBar1.add(jmenu_File);
+        jMenuBar_Main.add(jmenu_File);
 
         jmenu_Edit.setText("Edit");
 
@@ -211,10 +309,48 @@ public class FrameMain extends javax.swing.JFrame {
             }
         });
         jmenu_Edit.add(jmenu_Paste);
+        jmenu_Edit.add(jSeparator4);
 
-        jMenuBar1.add(jmenu_Edit);
+        jMenuItem1.setText("Undo");
+        jmenu_Edit.add(jMenuItem1);
+
+        jMenuItem2.setText("Redo");
+        jmenu_Edit.add(jMenuItem2);
+
+        jMenuBar_Main.add(jmenu_Edit);
+
+        jMenu1.setText("View");
+
+        jMenuItem3.setText("Editor");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Source");
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Preview");
+        jMenu1.add(jMenuItem5);
+        jMenu1.add(jSeparator5);
+
+        jMenuItem6.setText("Browser");
+        jMenu1.add(jMenuItem6);
+
+        jMenuBar_Main.add(jMenu1);
+
+        jMenu2.setText("Format");
+        jMenuBar_Main.add(jMenu2);
+
+        jMenu3.setText("HTML");
+        jMenuBar_Main.add(jMenu3);
+
+        jMenu4.setText("CSS");
+        jMenuBar_Main.add(jMenu4);
 
         jmenu_Help.setText("Help");
+
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/help.png"))); // NOI18N
+        jMenuItem7.setText("Help");
+        jmenu_Help.add(jMenuItem7);
 
         jMenu_Style.setText("Style");
 
@@ -269,9 +405,9 @@ public class FrameMain extends javax.swing.JFrame {
         });
         jmenu_Help.add(jmenu_showAbout);
 
-        jMenuBar1.add(jmenu_Help);
+        jMenuBar_Main.add(jmenu_Help);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar_Main);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -288,13 +424,7 @@ public class FrameMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmenu_openFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_openFileActionPerformed
-        //--Open File system
-        chooser.setFileFilter(new FileNameExtensionFilter("HTML and CSS", "HTML" ,"CSS"));
-        int r_Value = chooser.showOpenDialog(this);
-        if(r_Value == JFileChooser.APPROVE_OPTION){
-            System.out.println("You chose to open this file: " +
-            chooser.getSelectedFile().getName());
-        }
+       openFile();
     }//GEN-LAST:event_jmenu_openFileActionPerformed
 
     private void jmenu_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_ExitActionPerformed
@@ -304,7 +434,8 @@ public class FrameMain extends javax.swing.JFrame {
 
     private void jmenu_showAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_showAboutActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "This software was developed by Daniel Sega Mattos as a open-source project.", "About: W.E.B. Editor", WIDTH,null);
+        JOptionPane.showMessageDialog(this, "This software was developed by Daniel Sega Mattos as a open-source project.\n"
+                + "Special Thanks to  shlyapnikova.deviantart.com for icons.", "About: W.E.B. Editor", WIDTH,null);
     }//GEN-LAST:event_jmenu_showAboutActionPerformed
 
     private void jmenu_PasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_PasteActionPerformed
@@ -350,7 +481,12 @@ public class FrameMain extends javax.swing.JFrame {
     private void jMenu_WindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_WindowsActionPerformed
         changeLookAndFeel(new WindowsLookAndFeel());
     }//GEN-LAST:event_jMenu_WindowsActionPerformed
+
+    private void jbut_OpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_OpenFileActionPerformed
+        openFile();
+    }//GEN-LAST:event_jbut_OpenFileActionPerformed
     
+    //--This will change the style of the application
     private void changeLookAndFeel(LookAndFeel laf){
         try {
             UIManager.setLookAndFeel(laf);
@@ -358,6 +494,16 @@ public class FrameMain extends javax.swing.JFrame {
             this.pack();
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //--Open File system
+    private void openFile(){         
+        chooser.setFileFilter(new FileNameExtensionFilter("HTML and CSS", "HTML" ,"CSS"));
+        int r_Value = chooser.showOpenDialog(this);
+        if(r_Value == JFileChooser.APPROVE_OPTION){
+            System.out.println("You chose to open this file: " +
+            chooser.getSelectedFile().getName());
         }
     }
     /**
@@ -371,7 +517,7 @@ public class FrameMain extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("windows".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -395,8 +541,20 @@ public class FrameMain extends javax.swing.JFrame {
         chooser = new JFileChooser();  
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JEditorPane jEditorPane_Preview;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar_Main;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenu_Metal;
     private javax.swing.JMenuItem jMenu_Motif;
     private javax.swing.JMenuItem jMenu_Nimbus;
@@ -405,13 +563,22 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenu_WindowsClassic;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JScrollPane jTab_Editor;
     private javax.swing.JScrollPane jTab_Preview;
     private javax.swing.JScrollPane jTab_Source;
     private javax.swing.JTextPane jTextPane_Editor;
     private javax.swing.JTextPane jTextPane_Source;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton jbut_NewFile;
+    private javax.swing.JButton jbut_OpenFile;
+    private javax.swing.JButton jbut_SaveFile;
     private javax.swing.JMenuItem jmenu_Copy;
     private javax.swing.JMenu jmenu_Edit;
     private javax.swing.JMenuItem jmenu_Exit;
