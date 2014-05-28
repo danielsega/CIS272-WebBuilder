@@ -5,9 +5,12 @@
  */
 package cis272_project.View;
 
+import Controller.Element;
+import cis272_project.Model.ElementManager;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -15,17 +18,21 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import org.jsoup.nodes.Document;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 /**
  *
@@ -41,7 +48,8 @@ public class FrameMain extends javax.swing.JFrame {
     private JFileChooser chooser;
     private Clipboard clipBoard;
     private String fileName;
-    private Document doc;
+
+    private Element element;
 
     public FrameMain() {
         init();
@@ -60,23 +68,46 @@ public class FrameMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jpan_Main = new javax.swing.JPanel();
+        jPanel_Control = new javax.swing.JPanel();
+        jPanel_Default = new javax.swing.JPanel();
+        jPanel_Default_HTML = new javax.swing.JPanel();
+        jButton_Default_P = new javax.swing.JButton();
+        jButton_Default_H1 = new javax.swing.JButton();
+        jButton_Default_A = new javax.swing.JButton();
+        jButton_Default_IMG = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        jButton_Form = new javax.swing.JButton();
+        jButton_BR = new javax.swing.JButton();
+        jButton_TABLE = new javax.swing.JButton();
+        jSeparator19 = new javax.swing.JSeparator();
+        jButton_Default_DIV = new javax.swing.JButton();
+        jButton_Default_SPAN = new javax.swing.JButton();
+        jButton_Default_LI = new javax.swing.JButton();
+        jButton_Default_UL = new javax.swing.JButton();
+        jButton_Default_TR = new javax.swing.JButton();
+        jButton_Default_TD = new javax.swing.JButton();
+        jButton_HR = new javax.swing.JButton();
+        jButton_Default_IFRAME = new javax.swing.JButton();
+        jButton_Default_SPACE = new javax.swing.JButton();
+        jPanel_Paragraph = new javax.swing.JPanel();
+        jLabel_ParagraphName = new javax.swing.JLabel();
+        jSeparator18 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel_Heading = new javax.swing.JPanel();
+        jPanel_Link = new javax.swing.JPanel();
+        jPanel_Image = new javax.swing.JPanel();
         jpan_Editor = new javax.swing.JPanel();
         jtab_Main = new javax.swing.JTabbedPane();
-        jTab_Editor = new javax.swing.JScrollPane();
-        jTextPane_Editor = new javax.swing.JTextPane();
         jTab_Source = new javax.swing.JScrollPane();
         jTextPane_Source = new javax.swing.JTextPane();
         jTab_Preview = new javax.swing.JScrollPane();
         jEditorPane_Preview = new javax.swing.JEditorPane();
-        jScrollPane_Control = new javax.swing.JScrollPane();
         jToolBar_Main = new javax.swing.JToolBar();
         jbut_NewFile = new javax.swing.JButton();
         jbut_OpenFile = new javax.swing.JButton();
         jbut_SaveFile = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
         jbut_Browser = new javax.swing.JButton();
-        jbut_Undo = new javax.swing.JButton();
-        jbut_Redo = new javax.swing.JButton();
         jToolBar_Font = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
         jSeparator9 = new javax.swing.JToolBar.Separator();
@@ -105,17 +136,16 @@ public class FrameMain extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenu13 = new javax.swing.JMenu();
+        jMenuItem44 = new javax.swing.JMenuItem();
+        jMenuItem45 = new javax.swing.JMenuItem();
         jSeparator6 = new javax.swing.JPopupMenu.Separator();
         jmenu_Exit = new javax.swing.JMenuItem();
         jmenu_Edit = new javax.swing.JMenu();
         jMenuItem20 = new javax.swing.JMenuItem();
         jmenu_Copy = new javax.swing.JMenuItem();
         jmenu_Paste = new javax.swing.JMenuItem();
-        jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
@@ -135,23 +165,23 @@ public class FrameMain extends javax.swing.JFrame {
         jMenuItem27 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem17 = new javax.swing.JMenuItem();
-        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem_H1 = new javax.swing.JMenuItem();
+        jMenuItem_H2 = new javax.swing.JMenuItem();
+        jMenuItem_H3 = new javax.swing.JMenuItem();
+        jMenuItem_H4 = new javax.swing.JMenuItem();
+        jMenuItem_H5 = new javax.swing.JMenuItem();
+        jMenuItem_H6 = new javax.swing.JMenuItem();
+        jMenuItem_Paragraoh = new javax.swing.JMenuItem();
+        jMenuItem_Link = new javax.swing.JMenuItem();
+        jMenuItem_IMG = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jMenu9 = new javax.swing.JMenu();
-        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem_FormPlain = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem28 = new javax.swing.JMenuItem();
-        jMenuItem29 = new javax.swing.JMenuItem();
+        jMenuItem_Breakline = new javax.swing.JMenuItem();
+        jMenuItem_HorizonLine = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem30 = new javax.swing.JMenuItem();
+        jMenuItem_Title = new javax.swing.JMenuItem();
         jMenuItem31 = new javax.swing.JMenuItem();
         jMenuItem32 = new javax.swing.JMenuItem();
         jMenuItem35 = new javax.swing.JMenuItem();
@@ -160,6 +190,7 @@ public class FrameMain extends javax.swing.JFrame {
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenuItem37 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem38 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu11 = new javax.swing.JMenu();
@@ -183,6 +214,308 @@ public class FrameMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jpan_Main.setPreferredSize(new java.awt.Dimension(1024, 800));
+
+        jPanel_Control.setLayout(new java.awt.CardLayout());
+
+        jPanel_Default_HTML.setBorder(javax.swing.BorderFactory.createTitledBorder("HTML"));
+
+        jButton_Default_P.setText("<p>");
+        jButton_Default_P.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_PActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_H1.setText("<h1>");
+        jButton_Default_H1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_H1ActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_A.setText("<a>");
+        jButton_Default_A.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_AActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_IMG.setText("<img>");
+        jButton_Default_IMG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_IMGActionPerformed(evt);
+            }
+        });
+
+        jButton_Form.setText("<form>");
+        jButton_Form.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_FormActionPerformed(evt);
+            }
+        });
+
+        jButton_BR.setText("<br>");
+        jButton_BR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BRActionPerformed(evt);
+            }
+        });
+
+        jButton_TABLE.setText("<table>");
+        jButton_TABLE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_TABLEActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_DIV.setText("<div>");
+        jButton_Default_DIV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_DIVActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_SPAN.setText("<span>");
+        jButton_Default_SPAN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_SPANActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_LI.setText("<li>");
+        jButton_Default_LI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_LIActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_UL.setText("<ul>");
+        jButton_Default_UL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_ULActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_TR.setText("<tr>");
+        jButton_Default_TR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_TRActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_TD.setText("<td>");
+        jButton_Default_TD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_TDActionPerformed(evt);
+            }
+        });
+
+        jButton_HR.setText("<hr>");
+        jButton_HR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_HRActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_IFRAME.setText("<iframe>");
+        jButton_Default_IFRAME.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_IFRAMEActionPerformed(evt);
+            }
+        });
+
+        jButton_Default_SPACE.setText("&nbsp; (Space)");
+        jButton_Default_SPACE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Default_SPACEActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_Default_HTMLLayout = new javax.swing.GroupLayout(jPanel_Default_HTML);
+        jPanel_Default_HTML.setLayout(jPanel_Default_HTMLLayout);
+        jPanel_Default_HTMLLayout.setHorizontalGroup(
+            jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator4)
+            .addGroup(jPanel_Default_HTMLLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Default_IFRAME, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_BR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel_Default_HTMLLayout.createSequentialGroup()
+                        .addComponent(jButton_Default_P, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_Default_H1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_Default_HTMLLayout.createSequentialGroup()
+                        .addComponent(jButton_Default_A, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_Default_IMG, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_TABLE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator19)
+                    .addGroup(jPanel_Default_HTMLLayout.createSequentialGroup()
+                        .addComponent(jButton_Default_DIV, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_Default_SPAN, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_Default_HTMLLayout.createSequentialGroup()
+                        .addComponent(jButton_Default_UL, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_Default_LI, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel_Default_HTMLLayout.createSequentialGroup()
+                        .addComponent(jButton_Default_TR, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_Default_TD, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_Default_SPACE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_HR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel_Default_HTMLLayout.setVerticalGroup(
+            jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Default_HTMLLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Default_P)
+                    .addComponent(jButton_Default_H1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Default_A)
+                    .addComponent(jButton_Default_IMG))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_Form)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_BR)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_HR)
+                .addGap(11, 11, 11)
+                .addComponent(jSeparator19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Default_DIV)
+                    .addComponent(jButton_Default_SPAN))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Default_UL)
+                    .addComponent(jButton_Default_LI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_TABLE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_Default_HTMLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Default_TR)
+                    .addComponent(jButton_Default_TD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Default_IFRAME)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Default_SPACE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton_Default_P.getAccessibleContext().setAccessibleDescription("Paragraph");
+        jButton_Default_H1.getAccessibleContext().setAccessibleDescription("Heading 1");
+        jButton_Default_A.getAccessibleContext().setAccessibleDescription("Link");
+        jButton_Default_IMG.getAccessibleContext().setAccessibleDescription("Image");
+
+        javax.swing.GroupLayout jPanel_DefaultLayout = new javax.swing.GroupLayout(jPanel_Default);
+        jPanel_Default.setLayout(jPanel_DefaultLayout);
+        jPanel_DefaultLayout.setHorizontalGroup(
+            jPanel_DefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_DefaultLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_Default_HTML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel_DefaultLayout.setVerticalGroup(
+            jPanel_DefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_DefaultLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel_Default_HTML, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+
+        jPanel_Control.add(jPanel_Default, "card2");
+
+        jLabel_ParagraphName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_ParagraphName.setText("Paragraph");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Attributes"));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 126, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel_ParagraphLayout = new javax.swing.GroupLayout(jPanel_Paragraph);
+        jPanel_Paragraph.setLayout(jPanel_ParagraphLayout);
+        jPanel_ParagraphLayout.setHorizontalGroup(
+            jPanel_ParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator18, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel_ParagraphLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_ParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_ParagraphName, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel_ParagraphLayout.setVerticalGroup(
+            jPanel_ParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ParagraphLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_ParagraphName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(467, Short.MAX_VALUE))
+        );
+
+        jPanel_Control.add(jPanel_Paragraph, "card3");
+
+        javax.swing.GroupLayout jPanel_HeadingLayout = new javax.swing.GroupLayout(jPanel_Heading);
+        jPanel_Heading.setLayout(jPanel_HeadingLayout);
+        jPanel_HeadingLayout.setHorizontalGroup(
+            jPanel_HeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 205, Short.MAX_VALUE)
+        );
+        jPanel_HeadingLayout.setVerticalGroup(
+            jPanel_HeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 663, Short.MAX_VALUE)
+        );
+
+        jPanel_Control.add(jPanel_Heading, "card4");
+
+        javax.swing.GroupLayout jPanel_LinkLayout = new javax.swing.GroupLayout(jPanel_Link);
+        jPanel_Link.setLayout(jPanel_LinkLayout);
+        jPanel_LinkLayout.setHorizontalGroup(
+            jPanel_LinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 205, Short.MAX_VALUE)
+        );
+        jPanel_LinkLayout.setVerticalGroup(
+            jPanel_LinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 663, Short.MAX_VALUE)
+        );
+
+        jPanel_Control.add(jPanel_Link, "card5");
+
+        javax.swing.GroupLayout jPanel_ImageLayout = new javax.swing.GroupLayout(jPanel_Image);
+        jPanel_Image.setLayout(jPanel_ImageLayout);
+        jPanel_ImageLayout.setHorizontalGroup(
+            jPanel_ImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 205, Short.MAX_VALUE)
+        );
+        jPanel_ImageLayout.setVerticalGroup(
+            jPanel_ImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 663, Short.MAX_VALUE)
+        );
+
+        jPanel_Control.add(jPanel_Image, "card6");
+
         jtab_Main.setDoubleBuffered(true);
         jtab_Main.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -190,13 +523,15 @@ public class FrameMain extends javax.swing.JFrame {
             }
         });
 
-        jTab_Editor.setViewportView(jTextPane_Editor);
-
-        jtab_Main.addTab("Editor", jTab_Editor);
-
         jTab_Source.setViewportView(jTextPane_Source);
 
         jtab_Main.addTab("Source", jTab_Source);
+
+        jTab_Preview.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTab_PreviewComponentShown(evt);
+            }
+        });
 
         jEditorPane_Preview.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -215,12 +550,10 @@ public class FrameMain extends javax.swing.JFrame {
         );
         jpan_EditorLayout.setVerticalGroup(
             jpan_EditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jtab_Main.getAccessibleContext().setAccessibleName("tab_Preview");
-
-        jScrollPane_Control.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jToolBar_Main.setFloatable(false);
         jToolBar_Main.setRollover(true);
@@ -261,23 +594,12 @@ public class FrameMain extends javax.swing.JFrame {
         jbut_Browser.setFocusable(false);
         jbut_Browser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbut_Browser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_Browser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_BrowserActionPerformed(evt);
+            }
+        });
         jToolBar_Main.add(jbut_Browser);
-
-        jbut_Undo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Undo.png"))); // NOI18N
-        jbut_Undo.setText("Undo");
-        jbut_Undo.setToolTipText("Undo");
-        jbut_Undo.setFocusable(false);
-        jbut_Undo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbut_Undo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Main.add(jbut_Undo);
-
-        jbut_Redo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Redo.png"))); // NOI18N
-        jbut_Redo.setText("Redo");
-        jbut_Redo.setToolTipText("Redo");
-        jbut_Redo.setFocusable(false);
-        jbut_Redo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbut_Redo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Main.add(jbut_Redo);
 
         jToolBar_Font.setFloatable(false);
         jToolBar_Font.setRollover(true);
@@ -373,9 +695,9 @@ public class FrameMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jpan_Editor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpan_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(filler1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
-                    .addComponent(jScrollPane_Control))
+                .addGroup(jpan_MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel_Control, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jpan_MainLayout.setVerticalGroup(
@@ -392,7 +714,7 @@ public class FrameMain extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane_Control)))
+                        .addComponent(jPanel_Control, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -433,6 +755,16 @@ public class FrameMain extends javax.swing.JFrame {
         jMenu5.add(jMenuItem10);
 
         jmenu_File.add(jMenu5);
+
+        jMenu13.setText("Import");
+
+        jMenuItem44.setText("HTML");
+        jMenu13.add(jMenuItem44);
+
+        jMenuItem45.setText("CSS");
+        jMenu13.add(jMenuItem45);
+
+        jmenu_File.add(jMenu13);
         jmenu_File.add(jSeparator6);
 
         jmenu_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Exit.png"))); // NOI18N
@@ -472,35 +804,37 @@ public class FrameMain extends javax.swing.JFrame {
             }
         });
         jmenu_Edit.add(jmenu_Paste);
-        jmenu_Edit.add(jSeparator4);
-
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Undo.png"))); // NOI18N
-        jMenuItem1.setText("Undo");
-        jmenu_Edit.add(jMenuItem1);
-
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Redo.png"))); // NOI18N
-        jMenuItem2.setText("Redo");
-        jmenu_Edit.add(jMenuItem2);
 
         jMenuBar_Main.add(jmenu_Edit);
 
         jMenu1.setText("View");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Notes.png"))); // NOI18N
-        jMenuItem3.setText("Editor");
-        jMenu1.add(jMenuItem3);
-
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Text.png"))); // NOI18N
         jMenuItem4.setText("Source");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Display.png"))); // NOI18N
         jMenuItem5.setText("Preview");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
         jMenu1.add(jSeparator5);
 
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/globe.png"))); // NOI18N
         jMenuItem6.setText("Browser");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem6);
 
         jMenuBar_Main.add(jMenu1);
@@ -554,63 +888,118 @@ public class FrameMain extends javax.swing.JFrame {
 
         jMenu6.setText("Headings");
 
-        jMenuItem8.setText("Heading 1");
-        jMenu6.add(jMenuItem8);
+        jMenuItem_H1.setText("Heading 1");
+        jMenuItem_H1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_H1ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem_H1);
 
-        jMenuItem11.setText("Heading 2");
-        jMenu6.add(jMenuItem11);
+        jMenuItem_H2.setText("Heading 2");
+        jMenuItem_H2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_H2ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem_H2);
 
-        jMenuItem12.setText("Heading 3");
-        jMenu6.add(jMenuItem12);
+        jMenuItem_H3.setText("Heading 3");
+        jMenuItem_H3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_H3ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem_H3);
 
-        jMenuItem13.setText("Heading 4");
-        jMenu6.add(jMenuItem13);
+        jMenuItem_H4.setText("Heading 4");
+        jMenuItem_H4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_H4ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem_H4);
 
-        jMenuItem14.setText("Heading 5");
-        jMenu6.add(jMenuItem14);
+        jMenuItem_H5.setText("Heading 5");
+        jMenuItem_H5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_H5ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem_H5);
 
-        jMenuItem15.setText("Heading 6");
-        jMenu6.add(jMenuItem15);
+        jMenuItem_H6.setText("Heading 6");
+        jMenuItem_H6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_H6ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem_H6);
 
         jMenu3.add(jMenu6);
 
-        jMenuItem16.setText("Paragraph");
-        jMenu3.add(jMenuItem16);
+        jMenuItem_Paragraoh.setText("Paragraph");
+        jMenuItem_Paragraoh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ParagraohActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_Paragraoh);
 
-        jMenuItem17.setText("Link");
-        jMenu3.add(jMenuItem17);
+        jMenuItem_Link.setText("Link");
+        jMenuItem_Link.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_LinkActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_Link);
 
-        jMenuItem18.setText("Image");
-        jMenu3.add(jMenuItem18);
+        jMenuItem_IMG.setText("Image");
+        jMenuItem_IMG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_IMGActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_IMG);
         jMenu3.add(jSeparator7);
 
         jMenu9.setText("Form");
 
-        jMenuItem33.setText("Plain Form");
-        jMenu9.add(jMenuItem33);
+        jMenuItem_FormPlain.setText("Plain Form");
+        jMenuItem_FormPlain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FormPlainActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem_FormPlain);
         jMenu9.add(jSeparator15);
 
         jMenu3.add(jMenu9);
 
-        jMenuItem28.setText("Break Line");
-        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Breakline.setText("Break Line");
+        jMenuItem_Breakline.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem28ActionPerformed(evt);
+                jMenuItem_BreaklineActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem28);
+        jMenu3.add(jMenuItem_Breakline);
 
-        jMenuItem29.setText("Horizon Line");
-        jMenu3.add(jMenuItem29);
+        jMenuItem_HorizonLine.setText("Horizon Line");
+        jMenuItem_HorizonLine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_HorizonLineActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_HorizonLine);
         jMenu3.add(jSeparator14);
 
-        jMenuItem30.setText("Title");
-        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Title.setText("Title");
+        jMenuItem_Title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem30ActionPerformed(evt);
+                jMenuItem_TitleActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem30);
+        jMenu3.add(jMenuItem_Title);
 
         jMenuItem31.setText("List");
         jMenu3.add(jMenuItem31);
@@ -632,6 +1021,10 @@ public class FrameMain extends javax.swing.JFrame {
         jMenu3.add(jMenuItem37);
 
         jMenu10.setText("Entities");
+
+        jMenuItem1.setText("Space");
+        jMenu10.add(jMenuItem1);
+
         jMenu3.add(jMenu10);
 
         jMenuItem38.setText("Character set");
@@ -775,7 +1168,7 @@ public class FrameMain extends javax.swing.JFrame {
                 }
             }
         }
-        jTextPane_Editor.setText(result);
+        jTextPane_Source.setText(result);
     }//GEN-LAST:event_jmenu_PasteActionPerformed
 
     private void jmenu_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_CopyActionPerformed
@@ -813,34 +1206,152 @@ public class FrameMain extends javax.swing.JFrame {
         openFile();
     }//GEN-LAST:event_jbut_OpenFileActionPerformed
 
-    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem28ActionPerformed
+    private void jMenuItem_BreaklineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BreaklineActionPerformed
+        addSingleCommand(jPanel_Default_HTML, "br");
+    }//GEN-LAST:event_jMenuItem_BreaklineActionPerformed
 
-    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem30ActionPerformed
+    private void jMenuItem_TitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TitleActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.title);
+    }//GEN-LAST:event_jMenuItem_TitleActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        jtab_Main.setSelectedIndex(0);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        jtab_Main.setSelectedIndex(1);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        openBrowser();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jbut_BrowserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_BrowserActionPerformed
+        openBrowser();
+    }//GEN-LAST:event_jbut_BrowserActionPerformed
 
     private void jtab_MainFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtab_MainFocusGained
 
     }//GEN-LAST:event_jtab_MainFocusGained
 
-    private void jEditorPane_PreviewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditorPane_PreviewMouseEntered
-        // TODO add your handling code here:
-        String test = "<html>\n"
-                + "<head>\n"
-                + "<title></title>\n"
-                + "</head>\n"
-                + "<body>\n"
-                + "<!-- Put the body of your page below this line -->\n"
-                + "<p>test</p>\n"
-                + "<!-- Put the body of your page above this line -->\n"
-                + "</body>\n"
-                + "</html>";
-        if(jTextPane_Source.getText() != null){
+    //--This event will display the HTML as soon as the tab is displayed
+    private void jTab_PreviewComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTab_PreviewComponentShown
+        if (jTextPane_Source.getText() != null) {
             jEditorPane_Preview.setText(jTextPane_Source.getText());
         }
+    }//GEN-LAST:event_jTab_PreviewComponentShown
+
+    private void jEditorPane_PreviewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jEditorPane_PreviewMouseEntered
+        //addElement(ElementManager.Type.p);
     }//GEN-LAST:event_jEditorPane_PreviewMouseEntered
+
+    private void jMenuItem_ParagraohActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ParagraohActionPerformed
+        addCommand(jPanel_Paragraph, ElementManager.Type.p);
+    }//GEN-LAST:event_jMenuItem_ParagraohActionPerformed
+
+    private void jMenuItem_H1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H1ActionPerformed
+        addCommand(jPanel_Heading, ElementManager.Type.h1);
+    }//GEN-LAST:event_jMenuItem_H1ActionPerformed
+
+    private void jButton_Default_PActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_PActionPerformed
+        addCommand(jPanel_Paragraph, ElementManager.Type.p);
+    }//GEN-LAST:event_jButton_Default_PActionPerformed
+
+    private void jButton_Default_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_AActionPerformed
+        addCommand(jPanel_Link, ElementManager.Type.a);
+    }//GEN-LAST:event_jButton_Default_AActionPerformed
+
+    private void jButton_Default_H1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_H1ActionPerformed
+        addCommand(jPanel_Heading, ElementManager.Type.h1);
+    }//GEN-LAST:event_jButton_Default_H1ActionPerformed
+
+    private void jButton_Default_IMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_IMGActionPerformed
+        addCommand(jPanel_Image, ElementManager.Type.img);
+    }//GEN-LAST:event_jButton_Default_IMGActionPerformed
+
+    private void jButton_Default_DIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_DIVActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.div);
+    }//GEN-LAST:event_jButton_Default_DIVActionPerformed
+
+    private void jButton_Default_SPANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_SPANActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.span);
+    }//GEN-LAST:event_jButton_Default_SPANActionPerformed
+
+    private void jButton_Default_LIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_LIActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.li);
+    }//GEN-LAST:event_jButton_Default_LIActionPerformed
+
+    private void jButton_Default_ULActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_ULActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.ul);
+    }//GEN-LAST:event_jButton_Default_ULActionPerformed
+
+    private void jButton_Default_TRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_TRActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.tr);
+    }//GEN-LAST:event_jButton_Default_TRActionPerformed
+
+    private void jButton_Default_TDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_TDActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.td);
+    }//GEN-LAST:event_jButton_Default_TDActionPerformed
+
+    private void jButton_Default_IFRAMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_IFRAMEActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.iframe);
+    }//GEN-LAST:event_jButton_Default_IFRAMEActionPerformed
+
+    private void jButton_FormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_FormActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.form);
+    }//GEN-LAST:event_jButton_FormActionPerformed
+
+    private void jButton_BRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BRActionPerformed
+        addSingleCommand(jPanel_Default_HTML, "br");
+    }//GEN-LAST:event_jButton_BRActionPerformed
+
+    private void jButton_TABLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TABLEActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.table);
+    }//GEN-LAST:event_jButton_TABLEActionPerformed
+
+    private void jButton_HRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_HRActionPerformed
+        addSingleCommand(jPanel_Default_HTML, "hr");
+    }//GEN-LAST:event_jButton_HRActionPerformed
+
+    private void jButton_Default_SPACEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_SPACEActionPerformed
+        addEntity("&nbsp");        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Default_SPACEActionPerformed
+
+    private void jMenuItem_H2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H2ActionPerformed
+        addCommand(jPanel_Heading, ElementManager.Type.h2);
+    }//GEN-LAST:event_jMenuItem_H2ActionPerformed
+
+    private void jMenuItem_H3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H3ActionPerformed
+        addCommand(jPanel_Heading, ElementManager.Type.h3);
+    }//GEN-LAST:event_jMenuItem_H3ActionPerformed
+
+    private void jMenuItem_H4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H4ActionPerformed
+        addCommand(jPanel_Heading, ElementManager.Type.h4);
+    }//GEN-LAST:event_jMenuItem_H4ActionPerformed
+
+    private void jMenuItem_H5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H5ActionPerformed
+        addCommand(jPanel_Heading, ElementManager.Type.h5);
+    }//GEN-LAST:event_jMenuItem_H5ActionPerformed
+
+    private void jMenuItem_H6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H6ActionPerformed
+        addCommand(jPanel_Heading, ElementManager.Type.h1);
+    }//GEN-LAST:event_jMenuItem_H6ActionPerformed
+
+    private void jMenuItem_LinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_LinkActionPerformed
+        addCommand(jPanel_Link, ElementManager.Type.a);
+    }//GEN-LAST:event_jMenuItem_LinkActionPerformed
+
+    private void jMenuItem_IMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_IMGActionPerformed
+        addCommand(jPanel_Image, ElementManager.Type.img);
+    }//GEN-LAST:event_jMenuItem_IMGActionPerformed
+
+    private void jMenuItem_FormPlainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FormPlainActionPerformed
+        addCommand(jPanel_Default_HTML, ElementManager.Type.form);
+    }//GEN-LAST:event_jMenuItem_FormPlainActionPerformed
+
+    private void jMenuItem_HorizonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_HorizonLineActionPerformed
+        addSingleCommand(jPanel_Default_HTML, "hr");
+    }//GEN-LAST:event_jMenuItem_HorizonLineActionPerformed
 
     //--This will change the style of the application
     private void changeLookAndFeel(LookAndFeel laf) {
@@ -863,6 +1374,76 @@ public class FrameMain extends javax.swing.JFrame {
         }
     }
 
+    //--This will open the default browser
+    private void openBrowser() {
+        String fileLocation = "www.google.com";
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().browse(new URI(fileLocation));
+            } catch (IOException | URISyntaxException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    //--This will add simple elements
+    private void addElement(ElementManager.Type type) {
+        StyledDocument doc = jTextPane_Source.getStyledDocument();
+        int pos = jTextPane_Source.getCaretPosition();
+          if (jTextPane_Source.getSelectedText() == null) {
+            try {
+                doc.insertString(pos, "<" + type.name() + "> </" + type.name() + ">", null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!jTextPane_Source.getSelectedText().isEmpty()) {
+            String temp = element.addSingleElements(jTextPane_Source.getSelectedText(), type);
+            try {
+                doc.insertString(pos - temp.length(), "<" + type.name() + "> </" + type.name() + ">", null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+
+    //--This will add functions to the buttons
+    private void addCommand(JPanel pane, ElementManager.Type type) {
+        jPanel_Control.removeAll();
+        jPanel_Control.add(pane);
+        jPanel_Control.repaint();
+        jPanel_Control.revalidate();
+        addElement(type);
+    }
+
+    private void addSingleCommand(JPanel pane, String type){
+        jPanel_Control.removeAll();
+        jPanel_Control.add(pane);
+        jPanel_Control.repaint();
+        jPanel_Control.revalidate();
+        
+        StyledDocument doc = jTextPane_Source.getStyledDocument();
+        int pos = jTextPane_Source.getCaretPosition();
+        if (jTextPane_Source.getSelectedText() == null) {
+            try {
+                doc.insertString(pos, "<" + type + ">", null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    private void addEntity(String type){
+        StyledDocument doc = jTextPane_Source.getStyledDocument();
+        int pos = jTextPane_Source.getCaretPosition();
+        if (jTextPane_Source.getSelectedText() == null) {
+            try {
+                doc.insertString(pos,  type + ";", null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -874,7 +1455,7 @@ public class FrameMain extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("nimbus".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -896,6 +1477,7 @@ public class FrameMain extends javax.swing.JFrame {
     private void init() {
         setTitle(TITLE);
         chooser = new JFileChooser();
+        element = new Element();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
@@ -906,13 +1488,31 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton_BR;
+    private javax.swing.JButton jButton_Default_A;
+    private javax.swing.JButton jButton_Default_DIV;
+    private javax.swing.JButton jButton_Default_H1;
+    private javax.swing.JButton jButton_Default_IFRAME;
+    private javax.swing.JButton jButton_Default_IMG;
+    private javax.swing.JButton jButton_Default_LI;
+    private javax.swing.JButton jButton_Default_P;
+    private javax.swing.JButton jButton_Default_SPACE;
+    private javax.swing.JButton jButton_Default_SPAN;
+    private javax.swing.JButton jButton_Default_TD;
+    private javax.swing.JButton jButton_Default_TR;
+    private javax.swing.JButton jButton_Default_UL;
+    private javax.swing.JButton jButton_Form;
+    private javax.swing.JButton jButton_HR;
+    private javax.swing.JButton jButton_TABLE;
     private javax.swing.JComboBox jComboBox_Font;
     private javax.swing.JEditorPane jEditorPane_Preview;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_ParagraphName;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
+    private javax.swing.JMenu jMenu13;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -924,16 +1524,7 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar_Main;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
@@ -942,13 +1533,8 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
-    private javax.swing.JMenuItem jMenuItem28;
-    private javax.swing.JMenuItem jMenuItem29;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
-    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem36;
@@ -960,18 +1546,39 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem41;
     private javax.swing.JMenuItem jMenuItem42;
     private javax.swing.JMenuItem jMenuItem43;
+    private javax.swing.JMenuItem jMenuItem44;
+    private javax.swing.JMenuItem jMenuItem45;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItem_Breakline;
+    private javax.swing.JMenuItem jMenuItem_FormPlain;
+    private javax.swing.JMenuItem jMenuItem_H1;
+    private javax.swing.JMenuItem jMenuItem_H2;
+    private javax.swing.JMenuItem jMenuItem_H3;
+    private javax.swing.JMenuItem jMenuItem_H4;
+    private javax.swing.JMenuItem jMenuItem_H5;
+    private javax.swing.JMenuItem jMenuItem_H6;
+    private javax.swing.JMenuItem jMenuItem_HorizonLine;
+    private javax.swing.JMenuItem jMenuItem_IMG;
+    private javax.swing.JMenuItem jMenuItem_Link;
+    private javax.swing.JMenuItem jMenuItem_Paragraoh;
+    private javax.swing.JMenuItem jMenuItem_Title;
     private javax.swing.JMenuItem jMenu_Metal;
     private javax.swing.JMenuItem jMenu_Motif;
     private javax.swing.JMenuItem jMenu_Nimbus;
     private javax.swing.JMenu jMenu_Style;
     private javax.swing.JMenuItem jMenu_Windows;
     private javax.swing.JMenuItem jMenu_WindowsClassic;
-    private javax.swing.JScrollPane jScrollPane_Control;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel_Control;
+    private javax.swing.JPanel jPanel_Default;
+    private javax.swing.JPanel jPanel_Default_HTML;
+    private javax.swing.JPanel jPanel_Heading;
+    private javax.swing.JPanel jPanel_Image;
+    private javax.swing.JPanel jPanel_Link;
+    private javax.swing.JPanel jPanel_Paragraph;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
@@ -981,18 +1588,18 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
+    private javax.swing.JSeparator jSeparator18;
+    private javax.swing.JSeparator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
-    private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
-    private javax.swing.JScrollPane jTab_Editor;
     private javax.swing.JScrollPane jTab_Preview;
     private javax.swing.JScrollPane jTab_Source;
-    private javax.swing.JTextPane jTextPane_Editor;
     private javax.swing.JTextPane jTextPane_Source;
     private javax.swing.JToolBar jToolBar_Font;
     private javax.swing.JToolBar jToolBar_Main;
@@ -1003,9 +1610,7 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton jbut_Browser;
     private javax.swing.JButton jbut_NewFile;
     private javax.swing.JButton jbut_OpenFile;
-    private javax.swing.JButton jbut_Redo;
     private javax.swing.JButton jbut_SaveFile;
-    private javax.swing.JButton jbut_Undo;
     private javax.swing.JMenuItem jmenu_Copy;
     private javax.swing.JMenu jmenu_Edit;
     private javax.swing.JMenuItem jmenu_Exit;

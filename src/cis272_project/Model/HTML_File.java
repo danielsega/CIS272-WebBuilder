@@ -10,7 +10,6 @@ package cis272_project.Model;
  *
  * @author GW
  */
-public interface Command {
-    void execute();
-    void undo();
+public class HTML_File {
+    
 }
