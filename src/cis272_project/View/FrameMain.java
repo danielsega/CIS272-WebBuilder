@@ -14,12 +14,12 @@ import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -51,7 +51,11 @@ public class FrameMain extends javax.swing.JFrame {
 
     private JFileChooser chooser;
     private Clipboard clipBoard;
+    private FileNameExtensionFilter fef;
+    private File currentLocation;
+    private File currentFile;
     private String fileName;
+    private String blankHTML;
 
     private Element element;
     private Attribute attribute;
@@ -835,6 +839,11 @@ public class FrameMain extends javax.swing.JFrame {
         jbut_NewFile.setFocusable(false);
         jbut_NewFile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbut_NewFile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_NewFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_NewFileActionPerformed(evt);
+            }
+        });
         jToolBar_Main.add(jbut_NewFile);
 
         jbut_OpenFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/folder.png"))); // NOI18N
@@ -856,6 +865,11 @@ public class FrameMain extends javax.swing.JFrame {
         jbut_SaveFile.setFocusable(false);
         jbut_SaveFile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbut_SaveFile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_SaveFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_SaveFileActionPerformed(evt);
+            }
+        });
         jToolBar_Main.add(jbut_SaveFile);
         jToolBar_Main.add(jSeparator3);
 
@@ -1382,8 +1396,15 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jmenu_openFileActionPerformed
 
     private void jmenu_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_ExitActionPerformed
-        // A quick close operation TODO: ask to save before quitting.
-        System.exit(0);
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        JOptionPane.showConfirmDialog(null, "Would You Like to Save the file before exiting?","Exit",dialogButton);
+        
+        if(dialogButton == JOptionPane.YES_OPTION){
+            saveFile();
+            System.exit(1);
+        }else{
+            System.exit(1);
+        }
     }//GEN-LAST:event_jmenu_ExitActionPerformed
 
     private void jmenu_showAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_showAboutActionPerformed
@@ -1694,6 +1715,15 @@ public class FrameMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox_FontActionPerformed
 
+    private void jbut_SaveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_SaveFileActionPerformed
+        saveFile();
+    }//GEN-LAST:event_jbut_SaveFileActionPerformed
+
+    private void jbut_NewFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_NewFileActionPerformed
+        currentFile = null;
+        jTextPane_Source.setText(blankHTML);
+    }//GEN-LAST:event_jbut_NewFileActionPerformed
+
     //--This will change the style of the application
     private void changeLookAndFeel(LookAndFeel laf) {
         try {
@@ -1705,24 +1735,15 @@ public class FrameMain extends javax.swing.JFrame {
         }
     }
 
-    //--Open File system
-    private void openFile() {
-        chooser.setFileFilter(new FileNameExtensionFilter("HTML and CSS", "HTML", "CSS"));
-        int r_Value = chooser.showOpenDialog(this);
-        if (r_Value == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: "
-                    + chooser.getSelectedFile().getName());
-        }
-    }
-
     //--This will open the default browser
     private void openBrowser() {
-        String fileLocation = "www.google.com";
-        if (Desktop.isDesktopSupported()) {
-            try {
-                Desktop.getDesktop().browse(new URI(fileLocation));
-            } catch (IOException | URISyntaxException ex) {
-                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+        if (currentFile != null) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().browse(new URI(currentFile.getAbsolutePath()));
+                } catch (IOException | URISyntaxException ex) {
+                    Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
@@ -1849,6 +1870,66 @@ public class FrameMain extends javax.swing.JFrame {
         }
     }
 
+    //--Save File system
+    private void saveFile() {
+        chooser.setFileFilter(fef);
+        chooser.setCurrentDirectory(currentLocation);
+        int r_Value = chooser.showSaveDialog(this);
+        BufferedWriter bw;
+        if (r_Value == JFileChooser.APPROVE_OPTION) {
+            try {
+                if (fileName == null || fileName.isEmpty()) {
+                    fileName = chooser.getName();
+                    setTitle(TITLE + ": " + fileName);
+                    currentFile = chooser.getSelectedFile();
+                }
+                //}
+                bw = new BufferedWriter(new FileWriter(chooser.getSelectedFile()));
+                String[] lines = jTextPane_Source.getText().split("\\n");
+
+                for (int i = 0; i < lines.length; i++) {
+                    bw.write(lines[i]);
+                }
+                bw.close();
+            } catch (Exception e) {
+            }
+        }
+    }
+
+    //--Open File system
+    private void openFile() {
+        chooser.setFileFilter(fef);
+        int r_Value = chooser.showOpenDialog(this);
+        if (r_Value == JFileChooser.APPROVE_OPTION) {
+            load(chooser.getSelectedFile());
+            currentFile = chooser.getSelectedFile();
+        }
+    }
+
+    private void load(File file) {
+        BufferedReader reader = null;
+        StyledDocument doc = jTextPane_Source.getStyledDocument();
+        try {
+            reader = new BufferedReader(new FileReader(file));
+
+            String line;
+            jTextPane_Source.setText("");
+            jEditorPane_Preview.setText("");
+            while ((line = reader.readLine()) != null) {
+                doc.insertString(doc.getLength(), line + "\n", null);
+            }
+        } catch (IOException e) {
+        } catch (BadLocationException ex) {
+            Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+            }
+            
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1884,6 +1965,26 @@ public class FrameMain extends javax.swing.JFrame {
         chooser = new JFileChooser();
         element = new Element();
         attribute = new Attribute();
+        fef = new FileNameExtensionFilter("HTML FILES", "HTML");
+        currentLocation = new File(System.getProperty("user.dir"));
+
+        blankHTML = "<!DOCTYPE html>\n"
+                + "<html>\n"
+                + "\n"
+                + "    <head>\n"
+                + "\n"
+                + "        <title>Insert Title Here</title>\n"
+                + "\n"
+                + "        <style>\n"
+                + "        </style>\n"
+                + "\n"
+                + "    </head>\n"
+                + "\n"
+                + "    <body>\n"
+                + "        <p>Insert Text Here</p>\n"
+                + "    </body>\n"
+                + "\n"
+                + "</html>";
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
