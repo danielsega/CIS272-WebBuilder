@@ -5,11 +5,14 @@
  */
 package cis272_project.View;
 
+import Controller.Attribute;
 import Controller.Element;
+import cis272_project.Model.AttributeManager;
 import cis272_project.Model.ElementManager;
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -22,6 +25,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -50,6 +54,7 @@ public class FrameMain extends javax.swing.JFrame {
     private String fileName;
 
     private Element element;
+    private Attribute attribute;
 
     public FrameMain() {
         init();
@@ -89,13 +94,39 @@ public class FrameMain extends javax.swing.JFrame {
         jButton_HR = new javax.swing.JButton();
         jButton_Default_IFRAME = new javax.swing.JButton();
         jButton_Default_SPACE = new javax.swing.JButton();
-        jPanel_Paragraph = new javax.swing.JPanel();
-        jLabel_ParagraphName = new javax.swing.JLabel();
-        jSeparator18 = new javax.swing.JSeparator();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel_Heading = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel_Link = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator18 = new javax.swing.JSeparator();
+        jButton_Link_Main = new javax.swing.JButton();
+        jPanel_Link_Att = new javax.swing.JPanel();
+        jButton_Link_HREF = new javax.swing.JButton();
+        jButton_Link_Id = new javax.swing.JButton();
         jPanel_Image = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator20 = new javax.swing.JSeparator();
+        jButton_Img_Main = new javax.swing.JButton();
+        jPanel_Link_Att1 = new javax.swing.JPanel();
+        jButton_Img_Alt = new javax.swing.JButton();
+        jButton_Img_Src = new javax.swing.JButton();
+        jButton_Img_Width = new javax.swing.JButton();
+        jButton_Img_Height = new javax.swing.JButton();
+        jPanel_Form = new javax.swing.JPanel();
+        jPanel_Image1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator21 = new javax.swing.JSeparator();
+        jButton_Form_Main = new javax.swing.JButton();
+        jPanel_Link_Att2 = new javax.swing.JPanel();
+        jButton_Img_Alt1 = new javax.swing.JButton();
+        jButton_Form_Input = new javax.swing.JButton();
+        jButton_Img_Width1 = new javax.swing.JButton();
+        jButton_Form_InputText = new javax.swing.JButton();
+        jButton_Form_InputPassword = new javax.swing.JButton();
+        jButton_Form_InputRadio = new javax.swing.JButton();
+        jButton_Form_InputCheckbox = new javax.swing.JButton();
+        jButton_Form_InputSubmit = new javax.swing.JButton();
+        jSeparator22 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
         jpan_Editor = new javax.swing.JPanel();
         jtab_Main = new javax.swing.JTabbedPane();
         jTab_Source = new javax.swing.JScrollPane();
@@ -118,14 +149,14 @@ public class FrameMain extends javax.swing.JFrame {
         jbut_AlignRight = new javax.swing.JButton();
         jbut_AlignFull = new javax.swing.JButton();
         jSeparator11 = new javax.swing.JToolBar.Separator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButton_Color = new javax.swing.JButton();
+        jButton_Highlight = new javax.swing.JButton();
+        jButton_Smaller = new javax.swing.JButton();
+        jButton_Bigger = new javax.swing.JButton();
         jSeparator12 = new javax.swing.JToolBar.Separator();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jButton_Bold = new javax.swing.JButton();
+        jButton_Italic = new javax.swing.JButton();
+        jButton_Underline = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 0), new java.awt.Dimension(20, 32767));
         jMenuBar_Main = new javax.swing.JMenuBar();
         jmenu_File = new javax.swing.JMenu();
@@ -133,18 +164,7 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_openFile = new javax.swing.JMenuItem();
         jmenu_saveFile = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu13 = new javax.swing.JMenu();
-        jMenuItem44 = new javax.swing.JMenuItem();
-        jMenuItem45 = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         jmenu_Exit = new javax.swing.JMenuItem();
-        jmenu_Edit = new javax.swing.JMenu();
-        jMenuItem20 = new javax.swing.JMenuItem();
-        jmenu_Copy = new javax.swing.JMenuItem();
-        jmenu_Paste = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -182,27 +202,15 @@ public class FrameMain extends javax.swing.JFrame {
         jMenuItem_HorizonLine = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
         jMenuItem_Title = new javax.swing.JMenuItem();
-        jMenuItem31 = new javax.swing.JMenuItem();
+        jMenuItem_List = new javax.swing.JMenuItem();
         jMenuItem32 = new javax.swing.JMenuItem();
         jMenuItem35 = new javax.swing.JMenuItem();
         jMenuItem36 = new javax.swing.JMenuItem();
         jMenuItem34 = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem37 = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem38 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu11 = new javax.swing.JMenu();
-        jMenuItem39 = new javax.swing.JMenuItem();
-        jMenuItem40 = new javax.swing.JMenuItem();
-        jSeparator17 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem41 = new javax.swing.JMenuItem();
-        jMenuItem42 = new javax.swing.JMenuItem();
-        jMenuItem43 = new javax.swing.JMenuItem();
-        jMenu12 = new javax.swing.JMenu();
         jmenu_Help = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu_Style = new javax.swing.JMenu();
         jMenu_Nimbus = new javax.swing.JMenuItem();
         jMenu_Metal = new javax.swing.JMenuItem();
@@ -416,105 +424,368 @@ public class FrameMain extends javax.swing.JFrame {
         jButton_Default_A.getAccessibleContext().setAccessibleDescription("Link");
         jButton_Default_IMG.getAccessibleContext().setAccessibleDescription("Image");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Main Control Panel");
+
         javax.swing.GroupLayout jPanel_DefaultLayout = new javax.swing.GroupLayout(jPanel_Default);
         jPanel_Default.setLayout(jPanel_DefaultLayout);
         jPanel_DefaultLayout.setHorizontalGroup(
             jPanel_DefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_DefaultLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel_Default_HTML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel_DefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel_Default_HTML, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel_DefaultLayout.setVerticalGroup(
             jPanel_DefaultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_DefaultLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel_Default_HTML, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         jPanel_Control.add(jPanel_Default, "card2");
 
-        jLabel_ParagraphName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_ParagraphName.setText("Paragraph");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Hyperlink <a>");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Attributes"));
+        jButton_Link_Main.setText("Main Control Panel");
+        jButton_Link_Main.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Link_MainActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
-        );
+        jPanel_Link_Att.setBorder(javax.swing.BorderFactory.createTitledBorder("Attributes"));
 
-        javax.swing.GroupLayout jPanel_ParagraphLayout = new javax.swing.GroupLayout(jPanel_Paragraph);
-        jPanel_Paragraph.setLayout(jPanel_ParagraphLayout);
-        jPanel_ParagraphLayout.setHorizontalGroup(
-            jPanel_ParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator18, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel_ParagraphLayout.createSequentialGroup()
+        jButton_Link_HREF.setText("href");
+        jButton_Link_HREF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Link_HREFActionPerformed(evt);
+            }
+        });
+
+        jButton_Link_Id.setText("id");
+        jButton_Link_Id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Link_IdActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_Link_AttLayout = new javax.swing.GroupLayout(jPanel_Link_Att);
+        jPanel_Link_Att.setLayout(jPanel_Link_AttLayout);
+        jPanel_Link_AttLayout.setHorizontalGroup(
+            jPanel_Link_AttLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Link_AttLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel_ParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel_ParagraphName, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                .addGroup(jPanel_Link_AttLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Link_HREF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Link_Id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel_ParagraphLayout.setVerticalGroup(
-            jPanel_ParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_ParagraphLayout.createSequentialGroup()
+        jPanel_Link_AttLayout.setVerticalGroup(
+            jPanel_Link_AttLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Link_AttLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel_ParagraphName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(467, Short.MAX_VALUE))
+                .addComponent(jButton_Link_Id)
+                .addGap(2, 2, 2)
+                .addComponent(jButton_Link_HREF)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel_Control.add(jPanel_Paragraph, "card3");
-
-        javax.swing.GroupLayout jPanel_HeadingLayout = new javax.swing.GroupLayout(jPanel_Heading);
-        jPanel_Heading.setLayout(jPanel_HeadingLayout);
-        jPanel_HeadingLayout.setHorizontalGroup(
-            jPanel_HeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 205, Short.MAX_VALUE)
-        );
-        jPanel_HeadingLayout.setVerticalGroup(
-            jPanel_HeadingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
-        );
-
-        jPanel_Control.add(jPanel_Heading, "card4");
 
         javax.swing.GroupLayout jPanel_LinkLayout = new javax.swing.GroupLayout(jPanel_Link);
         jPanel_Link.setLayout(jPanel_LinkLayout);
         jPanel_LinkLayout.setHorizontalGroup(
             jPanel_LinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 205, Short.MAX_VALUE)
+            .addGroup(jPanel_LinkLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_LinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator18)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Link_Main, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(jPanel_Link_Att, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel_LinkLayout.setVerticalGroup(
             jPanel_LinkLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGroup(jPanel_LinkLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Link_Main, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Link_Att, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(493, Short.MAX_VALUE))
         );
 
         jPanel_Control.add(jPanel_Link, "card5");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Image <img>");
+
+        jButton_Img_Main.setText("Main Control Panel");
+        jButton_Img_Main.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Img_MainActionPerformed(evt);
+            }
+        });
+
+        jPanel_Link_Att1.setBorder(javax.swing.BorderFactory.createTitledBorder("Attributes"));
+
+        jButton_Img_Alt.setText("alt");
+        jButton_Img_Alt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Img_AltActionPerformed(evt);
+            }
+        });
+
+        jButton_Img_Src.setText("src");
+        jButton_Img_Src.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Img_SrcActionPerformed(evt);
+            }
+        });
+
+        jButton_Img_Width.setText("width");
+        jButton_Img_Width.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Img_WidthActionPerformed(evt);
+            }
+        });
+
+        jButton_Img_Height.setText("height");
+        jButton_Img_Height.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Img_HeightActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_Link_Att1Layout = new javax.swing.GroupLayout(jPanel_Link_Att1);
+        jPanel_Link_Att1.setLayout(jPanel_Link_Att1Layout);
+        jPanel_Link_Att1Layout.setHorizontalGroup(
+            jPanel_Link_Att1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Link_Att1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_Link_Att1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Img_Height, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Img_Alt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Img_Src, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .addComponent(jButton_Img_Width, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel_Link_Att1Layout.setVerticalGroup(
+            jPanel_Link_Att1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Link_Att1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton_Img_Src)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Img_Alt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Img_Width)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Img_Height)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel_ImageLayout = new javax.swing.GroupLayout(jPanel_Image);
         jPanel_Image.setLayout(jPanel_ImageLayout);
         jPanel_ImageLayout.setHorizontalGroup(
             jPanel_ImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 205, Short.MAX_VALUE)
+            .addGroup(jPanel_ImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_ImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator20)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Img_Main, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(jPanel_Link_Att1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel_ImageLayout.setVerticalGroup(
             jPanel_ImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGroup(jPanel_ImageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator20, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Img_Main, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Link_Att1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(431, Short.MAX_VALUE))
         );
 
         jPanel_Control.add(jPanel_Image, "card6");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("form <form>");
+
+        jButton_Form_Main.setText("Main Control Panel");
+        jButton_Form_Main.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Form_MainActionPerformed(evt);
+            }
+        });
+
+        jPanel_Link_Att2.setBorder(javax.swing.BorderFactory.createTitledBorder("Attributes"));
+
+        jButton_Img_Alt1.setText("name");
+        jButton_Img_Alt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Img_Alt1ActionPerformed(evt);
+            }
+        });
+
+        jButton_Form_Input.setText("input");
+        jButton_Form_Input.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Form_InputActionPerformed(evt);
+            }
+        });
+
+        jButton_Img_Width1.setText("value");
+        jButton_Img_Width1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Img_Width1ActionPerformed(evt);
+            }
+        });
+
+        jButton_Form_InputText.setText("input text");
+        jButton_Form_InputText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Form_InputTextActionPerformed(evt);
+            }
+        });
+
+        jButton_Form_InputPassword.setText("input password");
+        jButton_Form_InputPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Form_InputPasswordActionPerformed(evt);
+            }
+        });
+
+        jButton_Form_InputRadio.setText("input radio");
+        jButton_Form_InputRadio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Form_InputRadioActionPerformed(evt);
+            }
+        });
+
+        jButton_Form_InputCheckbox.setText("input checkbox");
+        jButton_Form_InputCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Form_InputCheckboxActionPerformed(evt);
+            }
+        });
+
+        jButton_Form_InputSubmit.setText("input submit");
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Input Types:");
+
+        javax.swing.GroupLayout jPanel_Link_Att2Layout = new javax.swing.GroupLayout(jPanel_Link_Att2);
+        jPanel_Link_Att2.setLayout(jPanel_Link_Att2Layout);
+        jPanel_Link_Att2Layout.setHorizontalGroup(
+            jPanel_Link_Att2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Link_Att2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_Link_Att2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Img_Alt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form_Input, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                    .addComponent(jButton_Img_Width1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form_InputText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form_InputPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form_InputRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form_InputCheckbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form_InputSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator22, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel_Link_Att2Layout.setVerticalGroup(
+            jPanel_Link_Att2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Link_Att2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton_Form_Input)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Img_Alt1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Img_Width1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator22, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jButton_Form_InputText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Form_InputPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Form_InputRadio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Form_InputCheckbox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Form_InputSubmit)
+                .addGap(39, 39, 39))
+        );
+
+        javax.swing.GroupLayout jPanel_Image1Layout = new javax.swing.GroupLayout(jPanel_Image1);
+        jPanel_Image1.setLayout(jPanel_Image1Layout);
+        jPanel_Image1Layout.setHorizontalGroup(
+            jPanel_Image1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Image1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_Image1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator21)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton_Form_Main, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(jPanel_Link_Att2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel_Image1Layout.setVerticalGroup(
+            jPanel_Image1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_Image1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator21, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_Form_Main, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel_Link_Att2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(238, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel_FormLayout = new javax.swing.GroupLayout(jPanel_Form);
+        jPanel_Form.setLayout(jPanel_FormLayout);
+        jPanel_FormLayout.setHorizontalGroup(
+            jPanel_FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 205, Short.MAX_VALUE)
+            .addGroup(jPanel_FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_FormLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel_Image1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel_FormLayout.setVerticalGroup(
+            jPanel_FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 663, Short.MAX_VALUE)
+            .addGroup(jPanel_FormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel_FormLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel_Image1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel_Control.add(jPanel_Form, "card5");
 
         jtab_Main.setDoubleBuffered(true);
         jtab_Main.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -546,7 +817,7 @@ public class FrameMain extends javax.swing.JFrame {
         jpan_Editor.setLayout(jpan_EditorLayout);
         jpan_EditorLayout.setHorizontalGroup(
             jpan_EditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jtab_Main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
         );
         jpan_EditorLayout.setVerticalGroup(
             jpan_EditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,8 +879,13 @@ public class FrameMain extends javax.swing.JFrame {
         jToolBar_Font.add(jLabel1);
         jToolBar_Font.add(jSeparator9);
 
-        jComboBox_Font.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Arial", "Times New Roman", "Comics" }));
+        jComboBox_Font.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Arial", "Times", "Courier" }));
         jComboBox_Font.setToolTipText("Fonts");
+        jComboBox_Font.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_FontActionPerformed(evt);
+            }
+        });
         jToolBar_Font.add(jComboBox_Font);
         jToolBar_Font.add(jSeparator10);
 
@@ -617,73 +893,128 @@ public class FrameMain extends javax.swing.JFrame {
         jbut_AlignLeft.setFocusable(false);
         jbut_AlignLeft.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbut_AlignLeft.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_AlignLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_AlignLeftActionPerformed(evt);
+            }
+        });
         jToolBar_Font.add(jbut_AlignLeft);
 
         jbut_AlignCenter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/text_align_center.png"))); // NOI18N
         jbut_AlignCenter.setFocusable(false);
         jbut_AlignCenter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbut_AlignCenter.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_AlignCenter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_AlignCenterActionPerformed(evt);
+            }
+        });
         jToolBar_Font.add(jbut_AlignCenter);
 
         jbut_AlignRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/text_align_right.png"))); // NOI18N
         jbut_AlignRight.setFocusable(false);
         jbut_AlignRight.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbut_AlignRight.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_AlignRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_AlignRightActionPerformed(evt);
+            }
+        });
         jToolBar_Font.add(jbut_AlignRight);
 
         jbut_AlignFull.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/text_align_full.png"))); // NOI18N
         jbut_AlignFull.setFocusable(false);
         jbut_AlignFull.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbut_AlignFull.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbut_AlignFull.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbut_AlignFullActionPerformed(evt);
+            }
+        });
         jToolBar_Font.add(jbut_AlignFull);
         jToolBar_Font.add(jSeparator11);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/color.png"))); // NOI18N
-        jButton1.setToolTipText("Color Manager");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Font.add(jButton1);
+        jButton_Color.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/color.png"))); // NOI18N
+        jButton_Color.setToolTipText("Color Manager");
+        jButton_Color.setFocusable(false);
+        jButton_Color.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_Color.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_Color.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ColorActionPerformed(evt);
+            }
+        });
+        jToolBar_Font.add(jButton_Color);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/highlight.png"))); // NOI18N
-        jButton2.setToolTipText("HighLight");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Font.add(jButton2);
+        jButton_Highlight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/highlight.png"))); // NOI18N
+        jButton_Highlight.setToolTipText("HighLight");
+        jButton_Highlight.setFocusable(false);
+        jButton_Highlight.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_Highlight.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_Highlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_HighlightActionPerformed(evt);
+            }
+        });
+        jToolBar_Font.add(jButton_Highlight);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/smaller.png"))); // NOI18N
-        jButton3.setToolTipText("Smaller Font");
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Font.add(jButton3);
+        jButton_Smaller.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/smaller.png"))); // NOI18N
+        jButton_Smaller.setToolTipText("Smaller Font");
+        jButton_Smaller.setFocusable(false);
+        jButton_Smaller.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_Smaller.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_Smaller.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SmallerActionPerformed(evt);
+            }
+        });
+        jToolBar_Font.add(jButton_Smaller);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/bigger.png"))); // NOI18N
-        jButton4.setToolTipText("Bigger Font");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Font.add(jButton4);
+        jButton_Bigger.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/bigger.png"))); // NOI18N
+        jButton_Bigger.setToolTipText("Bigger Font");
+        jButton_Bigger.setFocusable(false);
+        jButton_Bigger.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_Bigger.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_Bigger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BiggerActionPerformed(evt);
+            }
+        });
+        jToolBar_Font.add(jButton_Bigger);
         jToolBar_Font.add(jSeparator12);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Bold.png"))); // NOI18N
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Font.add(jButton5);
+        jButton_Bold.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Bold.png"))); // NOI18N
+        jButton_Bold.setFocusable(false);
+        jButton_Bold.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_Bold.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_Bold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BoldActionPerformed(evt);
+            }
+        });
+        jToolBar_Font.add(jButton_Bold);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Italic.png"))); // NOI18N
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Font.add(jButton6);
+        jButton_Italic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Italic.png"))); // NOI18N
+        jButton_Italic.setFocusable(false);
+        jButton_Italic.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_Italic.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_Italic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ItalicActionPerformed(evt);
+            }
+        });
+        jToolBar_Font.add(jButton_Italic);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Underline.png"))); // NOI18N
-        jButton7.setFocusable(false);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Font.add(jButton7);
+        jButton_Underline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Underline.png"))); // NOI18N
+        jButton_Underline.setFocusable(false);
+        jButton_Underline.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton_Underline.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton_Underline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_UnderlineActionPerformed(evt);
+            }
+        });
+        jToolBar_Font.add(jButton_Underline);
 
         javax.swing.GroupLayout jpan_MainLayout = new javax.swing.GroupLayout(jpan_Main);
         jpan_Main.setLayout(jpan_MainLayout);
@@ -741,32 +1072,6 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_File.add(jmenu_saveFile);
         jmenu_File.add(jSeparator1);
 
-        jMenu5.setText("Export");
-
-        jMenuItem9.setText("HTML");
-        jMenu5.add(jMenuItem9);
-
-        jMenuItem10.setText("CSS");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem10);
-
-        jmenu_File.add(jMenu5);
-
-        jMenu13.setText("Import");
-
-        jMenuItem44.setText("HTML");
-        jMenu13.add(jMenuItem44);
-
-        jMenuItem45.setText("CSS");
-        jMenu13.add(jMenuItem45);
-
-        jmenu_File.add(jMenu13);
-        jmenu_File.add(jSeparator6);
-
         jmenu_Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Exit.png"))); // NOI18N
         jmenu_Exit.setText("Exit");
         jmenu_Exit.addActionListener(new java.awt.event.ActionListener() {
@@ -777,35 +1082,6 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_File.add(jmenu_Exit);
 
         jMenuBar_Main.add(jmenu_File);
-
-        jmenu_Edit.setText("Edit");
-
-        jMenuItem20.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/edit-cut.png"))); // NOI18N
-        jMenuItem20.setText("Cut");
-        jmenu_Edit.add(jMenuItem20);
-
-        jmenu_Copy.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jmenu_Copy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Copy.png"))); // NOI18N
-        jmenu_Copy.setText("Copy");
-        jmenu_Copy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmenu_CopyActionPerformed(evt);
-            }
-        });
-        jmenu_Edit.add(jmenu_Copy);
-
-        jmenu_Paste.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        jmenu_Paste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Paste.png"))); // NOI18N
-        jmenu_Paste.setText("Paste");
-        jmenu_Paste.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmenu_PasteActionPerformed(evt);
-            }
-        });
-        jmenu_Edit.add(jmenu_Paste);
-
-        jMenuBar_Main.add(jmenu_Edit);
 
         jMenu1.setText("View");
 
@@ -1001,8 +1277,8 @@ public class FrameMain extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem_Title);
 
-        jMenuItem31.setText("List");
-        jMenu3.add(jMenuItem31);
+        jMenuItem_List.setText("List");
+        jMenu3.add(jMenuItem_List);
 
         jMenuItem32.setText("Table");
         jMenu3.add(jMenuItem32);
@@ -1017,9 +1293,6 @@ public class FrameMain extends javax.swing.JFrame {
         jMenu3.add(jMenuItem34);
         jMenu3.add(jSeparator16);
 
-        jMenuItem37.setText("Script");
-        jMenu3.add(jMenuItem37);
-
         jMenu10.setText("Entities");
 
         jMenuItem1.setText("Space");
@@ -1027,44 +1300,9 @@ public class FrameMain extends javax.swing.JFrame {
 
         jMenu3.add(jMenu10);
 
-        jMenuItem38.setText("Character set");
-        jMenu3.add(jMenuItem38);
-
         jMenuBar_Main.add(jMenu3);
 
-        jMenu4.setText("CSS");
-
-        jMenu11.setText("Background");
-
-        jMenuItem39.setText("Color");
-        jMenu11.add(jMenuItem39);
-
-        jMenuItem40.setText("Image");
-        jMenu11.add(jMenuItem40);
-        jMenu11.add(jSeparator17);
-
-        jMenuItem41.setText("Attachment");
-        jMenu11.add(jMenuItem41);
-
-        jMenuItem42.setText("Position");
-        jMenu11.add(jMenuItem42);
-
-        jMenuItem43.setText("Repeat");
-        jMenu11.add(jMenuItem43);
-
-        jMenu4.add(jMenu11);
-
-        jMenu12.setText("Text");
-        jMenu4.add(jMenu12);
-
-        jMenuBar_Main.add(jMenu4);
-
         jmenu_Help.setText("Help");
-
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Help book.png"))); // NOI18N
-        jMenuItem7.setText("Help");
-        jmenu_Help.add(jMenuItem7);
 
         jMenu_Style.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/picture.png"))); // NOI18N
         jMenu_Style.setText("Style");
@@ -1154,30 +1392,6 @@ public class FrameMain extends javax.swing.JFrame {
                 + "Special Thanks to www.iconfinder.com and www.small-icons.com for icons.", "About: W.E.B. Editor", WIDTH, null);
     }//GEN-LAST:event_jmenu_showAboutActionPerformed
 
-    private void jmenu_PasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_PasteActionPerformed
-        String result = "No Value";
-        clipBoard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        Transferable transClip = clipBoard.getContents(null);
-
-        if (transClip != null) {
-            if (transClip.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-                try {
-                    result = (String) transClip.getTransferData(DataFlavor.stringFlavor);
-                } catch (UnsupportedFlavorException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        jTextPane_Source.setText(result);
-    }//GEN-LAST:event_jmenu_PasteActionPerformed
-
-    private void jmenu_CopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_CopyActionPerformed
-        //TODO: Select text
-        clipBoard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        Transferable tText = new StringSelection("test");
-        clipBoard.setContents(tText, null);
-    }//GEN-LAST:event_jmenu_CopyActionPerformed
-
     private void jMenu_MetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_MetalActionPerformed
         changeLookAndFeel(new MetalLookAndFeel());
     }//GEN-LAST:event_jMenu_MetalActionPerformed
@@ -1198,10 +1412,6 @@ public class FrameMain extends javax.swing.JFrame {
         changeLookAndFeel(new WindowsLookAndFeel());
     }//GEN-LAST:event_jMenu_WindowsActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
-
     private void jbut_OpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_OpenFileActionPerformed
         openFile();
     }//GEN-LAST:event_jbut_OpenFileActionPerformed
@@ -1211,7 +1421,7 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_BreaklineActionPerformed
 
     private void jMenuItem_TitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TitleActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.title);
+        addCommand(jPanel_Default, ElementManager.Type.title);
     }//GEN-LAST:event_jMenuItem_TitleActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -1236,6 +1446,7 @@ public class FrameMain extends javax.swing.JFrame {
 
     //--This event will display the HTML as soon as the tab is displayed
     private void jTab_PreviewComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTab_PreviewComponentShown
+        //System.err.println(jTextPane_Source.getText());
         if (jTextPane_Source.getText() != null) {
             jEditorPane_Preview.setText(jTextPane_Source.getText());
         }
@@ -1246,15 +1457,15 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jEditorPane_PreviewMouseEntered
 
     private void jMenuItem_ParagraohActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ParagraohActionPerformed
-        addCommand(jPanel_Paragraph, ElementManager.Type.p);
+        addCommand(jPanel_Default, ElementManager.Type.p);
     }//GEN-LAST:event_jMenuItem_ParagraohActionPerformed
 
     private void jMenuItem_H1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H1ActionPerformed
-        addCommand(jPanel_Heading, ElementManager.Type.h1);
+        addCommand(jPanel_Default, ElementManager.Type.h1);
     }//GEN-LAST:event_jMenuItem_H1ActionPerformed
 
     private void jButton_Default_PActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_PActionPerformed
-        addCommand(jPanel_Paragraph, ElementManager.Type.p);
+        addCommand(jPanel_Default, ElementManager.Type.p);
     }//GEN-LAST:event_jButton_Default_PActionPerformed
 
     private void jButton_Default_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_AActionPerformed
@@ -1262,7 +1473,7 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Default_AActionPerformed
 
     private void jButton_Default_H1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_H1ActionPerformed
-        addCommand(jPanel_Heading, ElementManager.Type.h1);
+        addCommand(jPanel_Default, ElementManager.Type.h1);
     }//GEN-LAST:event_jButton_Default_H1ActionPerformed
 
     private void jButton_Default_IMGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_IMGActionPerformed
@@ -1270,47 +1481,47 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Default_IMGActionPerformed
 
     private void jButton_Default_DIVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_DIVActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.div);
+        addCommand(jPanel_Default, ElementManager.Type.div);
     }//GEN-LAST:event_jButton_Default_DIVActionPerformed
 
     private void jButton_Default_SPANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_SPANActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.span);
+        addCommand(jPanel_Default, ElementManager.Type.span);
     }//GEN-LAST:event_jButton_Default_SPANActionPerformed
 
     private void jButton_Default_LIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_LIActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.li);
+        addCommand(jPanel_Default, ElementManager.Type.li);
     }//GEN-LAST:event_jButton_Default_LIActionPerformed
 
     private void jButton_Default_ULActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_ULActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.ul);
+        addCommand(jPanel_Default, ElementManager.Type.ul);
     }//GEN-LAST:event_jButton_Default_ULActionPerformed
 
     private void jButton_Default_TRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_TRActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.tr);
+        addCommand(jPanel_Default, ElementManager.Type.tr);
     }//GEN-LAST:event_jButton_Default_TRActionPerformed
 
     private void jButton_Default_TDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_TDActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.td);
+        addCommand(jPanel_Default, ElementManager.Type.td);
     }//GEN-LAST:event_jButton_Default_TDActionPerformed
 
     private void jButton_Default_IFRAMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_IFRAMEActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.iframe);
+        addCommand(jPanel_Default, ElementManager.Type.iframe);
     }//GEN-LAST:event_jButton_Default_IFRAMEActionPerformed
 
     private void jButton_FormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_FormActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.form);
+        addCommand(jPanel_Form, ElementManager.Type.form);
     }//GEN-LAST:event_jButton_FormActionPerformed
 
     private void jButton_BRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BRActionPerformed
-        addSingleCommand(jPanel_Default_HTML, "br");
+        addSingleCommand(jPanel_Default, "br");
     }//GEN-LAST:event_jButton_BRActionPerformed
 
     private void jButton_TABLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TABLEActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.table);
+        addCommand(jPanel_Default, ElementManager.Type.table);
     }//GEN-LAST:event_jButton_TABLEActionPerformed
 
     private void jButton_HRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_HRActionPerformed
-        addSingleCommand(jPanel_Default_HTML, "hr");
+        addSingleCommand(jPanel_Default, "hr");
     }//GEN-LAST:event_jButton_HRActionPerformed
 
     private void jButton_Default_SPACEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_SPACEActionPerformed
@@ -1318,23 +1529,23 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Default_SPACEActionPerformed
 
     private void jMenuItem_H2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H2ActionPerformed
-        addCommand(jPanel_Heading, ElementManager.Type.h2);
+        addCommand(jPanel_Default, ElementManager.Type.h2);
     }//GEN-LAST:event_jMenuItem_H2ActionPerformed
 
     private void jMenuItem_H3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H3ActionPerformed
-        addCommand(jPanel_Heading, ElementManager.Type.h3);
+        addCommand(jPanel_Default, ElementManager.Type.h3);
     }//GEN-LAST:event_jMenuItem_H3ActionPerformed
 
     private void jMenuItem_H4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H4ActionPerformed
-        addCommand(jPanel_Heading, ElementManager.Type.h4);
+        addCommand(jPanel_Default, ElementManager.Type.h4);
     }//GEN-LAST:event_jMenuItem_H4ActionPerformed
 
     private void jMenuItem_H5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H5ActionPerformed
-        addCommand(jPanel_Heading, ElementManager.Type.h5);
+        addCommand(jPanel_Default, ElementManager.Type.h5);
     }//GEN-LAST:event_jMenuItem_H5ActionPerformed
 
     private void jMenuItem_H6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H6ActionPerformed
-        addCommand(jPanel_Heading, ElementManager.Type.h1);
+        addCommand(jPanel_Default, ElementManager.Type.h1);
     }//GEN-LAST:event_jMenuItem_H6ActionPerformed
 
     private void jMenuItem_LinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_LinkActionPerformed
@@ -1346,12 +1557,142 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_IMGActionPerformed
 
     private void jMenuItem_FormPlainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FormPlainActionPerformed
-        addCommand(jPanel_Default_HTML, ElementManager.Type.form);
+        addCommand(jPanel_Default, ElementManager.Type.form);
     }//GEN-LAST:event_jMenuItem_FormPlainActionPerformed
+
+    private void jButton_Link_MainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Link_MainActionPerformed
+        changePanel(jPanel_Default);
+    }//GEN-LAST:event_jButton_Link_MainActionPerformed
+
+    private void jButton_Img_MainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_MainActionPerformed
+        changePanel(jPanel_Default);
+    }//GEN-LAST:event_jButton_Img_MainActionPerformed
+
+    private void jButton_Link_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Link_IdActionPerformed
+        addAttribute(AttributeManager.Type.id);
+    }//GEN-LAST:event_jButton_Link_IdActionPerformed
+
+    private void jButton_Link_HREFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Link_HREFActionPerformed
+        addAttribute(AttributeManager.Type.href);
+    }//GEN-LAST:event_jButton_Link_HREFActionPerformed
+
+    private void jButton_ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ColorActionPerformed
+        Color color = JColorChooser.showDialog(this, "Choose a color", Color.black);
+        elementCss(ElementManager.Type.span, "color: rgb(" + color.getRed()
+                + " , " + color.getGreen()
+                + " , " + color.getBlue()
+                + ");");
+    }//GEN-LAST:event_jButton_ColorActionPerformed
+
+    private void jButton_HighlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_HighlightActionPerformed
+        Color color = JColorChooser.showDialog(this, "Choose a color", Color.yellow);
+        elementCss(ElementManager.Type.span, "background-color: rgb(" + color.getRed()
+                + " , " + color.getGreen()
+                + " , " + color.getBlue()
+                + ");");
+    }//GEN-LAST:event_jButton_HighlightActionPerformed
+
+    private void jButton_Img_SrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_SrcActionPerformed
+        addAttribute(AttributeManager.Type.src);
+    }//GEN-LAST:event_jButton_Img_SrcActionPerformed
+
+    private void jButton_Img_AltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_AltActionPerformed
+        addAttribute(AttributeManager.Type.alt);
+    }//GEN-LAST:event_jButton_Img_AltActionPerformed
+
+    private void jButton_Img_WidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_WidthActionPerformed
+        addAttribute(AttributeManager.Type.width);
+    }//GEN-LAST:event_jButton_Img_WidthActionPerformed
+
+    private void jButton_Img_HeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_HeightActionPerformed
+        addAttribute(AttributeManager.Type.height);
+    }//GEN-LAST:event_jButton_Img_HeightActionPerformed
 
     private void jMenuItem_HorizonLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_HorizonLineActionPerformed
         addSingleCommand(jPanel_Default_HTML, "hr");
     }//GEN-LAST:event_jMenuItem_HorizonLineActionPerformed
+
+    private void jButton_Form_MainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Form_MainActionPerformed
+        changePanel(jPanel_Default);
+    }//GEN-LAST:event_jButton_Form_MainActionPerformed
+
+    private void jButton_Img_Alt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_Alt1ActionPerformed
+        addAttribute(AttributeManager.Type.name);
+    }//GEN-LAST:event_jButton_Img_Alt1ActionPerformed
+
+    private void jButton_Form_InputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Form_InputActionPerformed
+        addSingleCommand(jPanel_Form, "input");
+    }//GEN-LAST:event_jButton_Form_InputActionPerformed
+
+    private void jButton_Img_Width1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_Width1ActionPerformed
+        addAttribute(AttributeManager.Type.value);
+    }//GEN-LAST:event_jButton_Img_Width1ActionPerformed
+
+    private void jButton_Form_InputTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Form_InputTextActionPerformed
+        addInput("text");
+    }//GEN-LAST:event_jButton_Form_InputTextActionPerformed
+
+    private void jButton_Form_InputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Form_InputPasswordActionPerformed
+        addInput("password");
+    }//GEN-LAST:event_jButton_Form_InputPasswordActionPerformed
+
+    private void jButton_Form_InputRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Form_InputRadioActionPerformed
+        addInput("radio");
+    }//GEN-LAST:event_jButton_Form_InputRadioActionPerformed
+
+    private void jButton_Form_InputCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Form_InputCheckboxActionPerformed
+        addInput("checkbox");
+    }//GEN-LAST:event_jButton_Form_InputCheckboxActionPerformed
+
+    private void jbut_AlignLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_AlignLeftActionPerformed
+        elementCss(ElementManager.Type.div, "text-align: left;");
+    }//GEN-LAST:event_jbut_AlignLeftActionPerformed
+
+    private void jbut_AlignCenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_AlignCenterActionPerformed
+        elementCss(ElementManager.Type.div, "text-align: center;");
+    }//GEN-LAST:event_jbut_AlignCenterActionPerformed
+
+    private void jbut_AlignRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_AlignRightActionPerformed
+        elementCss(ElementManager.Type.div, "text-align: right;");
+    }//GEN-LAST:event_jbut_AlignRightActionPerformed
+
+    private void jbut_AlignFullActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_AlignFullActionPerformed
+        elementCss(ElementManager.Type.div, "text-align: justify;");
+    }//GEN-LAST:event_jbut_AlignFullActionPerformed
+
+    private void jButton_BoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BoldActionPerformed
+        elementCss(ElementManager.Type.span, "font-weight: bold;");
+    }//GEN-LAST:event_jButton_BoldActionPerformed
+
+    private void jButton_ItalicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ItalicActionPerformed
+        elementCss(ElementManager.Type.span, "font-weight: italic;");
+    }//GEN-LAST:event_jButton_ItalicActionPerformed
+
+    private void jButton_UnderlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UnderlineActionPerformed
+        elementCss(ElementManager.Type.span, "font-weight: underline;");
+    }//GEN-LAST:event_jButton_UnderlineActionPerformed
+
+    private void jButton_SmallerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SmallerActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.small);
+    }//GEN-LAST:event_jButton_SmallerActionPerformed
+
+    private void jButton_BiggerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BiggerActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.big);
+    }//GEN-LAST:event_jButton_BiggerActionPerformed
+
+    private void jComboBox_FontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_FontActionPerformed
+        switch (jComboBox_Font.getSelectedIndex()) {
+            case 0:
+                elementCss(ElementManager.Type.span, "font-family: Helvetica,Arial,sans-serif;");
+                break;
+            case 1:
+                elementCss(ElementManager.Type.span, "font-family: Times New Roman,Times,serif;");
+                break;
+            case 2:
+                elementCss(ElementManager.Type.span, "font-family: Courier New,Courier,monospace;");
+                break;
+        }
+    }//GEN-LAST:event_jComboBox_FontActionPerformed
 
     //--This will change the style of the application
     private void changeLookAndFeel(LookAndFeel laf) {
@@ -1390,7 +1731,7 @@ public class FrameMain extends javax.swing.JFrame {
     private void addElement(ElementManager.Type type) {
         StyledDocument doc = jTextPane_Source.getStyledDocument();
         int pos = jTextPane_Source.getCaretPosition();
-          if (jTextPane_Source.getSelectedText() == null) {
+        if (jTextPane_Source.getSelectedText() == null) {
             try {
                 doc.insertString(pos, "<" + type.name() + "> </" + type.name() + ">", null);
             } catch (BadLocationException ex) {
@@ -1399,13 +1740,14 @@ public class FrameMain extends javax.swing.JFrame {
         } else if (!jTextPane_Source.getSelectedText().isEmpty()) {
             String temp = element.addSingleElements(jTextPane_Source.getSelectedText(), type);
             try {
-                doc.insertString(pos - temp.length(), "<" + type.name() + "> </" + type.name() + ">", null);
+                jTextPane_Source.replaceSelection("");
+                pos = jTextPane_Source.getCaretPosition();
+                doc.insertString(pos, temp, null);
             } catch (BadLocationException ex) {
                 Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
 
     //--This will add functions to the buttons
     private void addCommand(JPanel pane, ElementManager.Type type) {
@@ -1416,12 +1758,12 @@ public class FrameMain extends javax.swing.JFrame {
         addElement(type);
     }
 
-    private void addSingleCommand(JPanel pane, String type){
+    private void addSingleCommand(JPanel pane, String type) {
         jPanel_Control.removeAll();
         jPanel_Control.add(pane);
         jPanel_Control.repaint();
         jPanel_Control.revalidate();
-        
+
         StyledDocument doc = jTextPane_Source.getStyledDocument();
         int pos = jTextPane_Source.getCaretPosition();
         if (jTextPane_Source.getSelectedText() == null) {
@@ -1433,17 +1775,80 @@ public class FrameMain extends javax.swing.JFrame {
         }
     }
 
-    private void addEntity(String type){
+    private void addEntity(String type) {
         StyledDocument doc = jTextPane_Source.getStyledDocument();
         int pos = jTextPane_Source.getCaretPosition();
         if (jTextPane_Source.getSelectedText() == null) {
             try {
-                doc.insertString(pos,  type + ";", null);
+                doc.insertString(pos, type + ";", null);
             } catch (BadLocationException ex) {
                 Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
+
+    //--This will change the panel
+    private void changePanel(JPanel pane) {
+        jPanel_Control.removeAll();
+        jPanel_Control.add(pane);
+        jPanel_Control.repaint();
+        jPanel_Control.revalidate();
+    }
+
+    //--This will addAttribute
+    private void addAttribute(AttributeManager.Type type) {
+        StyledDocument doc = jTextPane_Source.getStyledDocument();
+        int pos = jTextPane_Source.getCaretPosition();
+        if (jTextPane_Source.getSelectedText() == null) {
+            try {
+                doc.insertString(pos, " " + type.name() + "= \" \" ", null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!jTextPane_Source.getSelectedText().isEmpty()) {
+            String temp = attribute.addSingleAttribute(jTextPane_Source.getSelectedText(), type);
+            try {
+                jTextPane_Source.replaceSelection("");
+                pos = jTextPane_Source.getCaretPosition();
+                doc.insertString(pos, temp, null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    private void addInput(String type) {
+        StyledDocument doc = jTextPane_Source.getStyledDocument();
+        int pos = jTextPane_Source.getCaretPosition();
+        try {
+            doc.insertString(pos, "<input type=\"" + type + "\" >", null);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void elementCss(ElementManager.Type type, String css) {
+        StyledDocument doc = jTextPane_Source.getStyledDocument();
+        int pos = jTextPane_Source.getCaretPosition();
+        if (jTextPane_Source.getSelectedText() == null) {
+            try {
+                doc.insertString(pos, "<" + type.name() + " style=\"" + css + "\" > </" + type.name() + ">", null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!jTextPane_Source.getSelectedText().isEmpty()) {
+            String temp = element.addElementCss(jTextPane_Source.getSelectedText(), type, css);
+            try {
+                jTextPane_Source.replaceSelection("");
+                pos = jTextPane_Source.getCaretPosition();
+                doc.insertString(pos, temp, null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -1478,17 +1883,14 @@ public class FrameMain extends javax.swing.JFrame {
         setTitle(TITLE);
         chooser = new JFileChooser();
         element = new Element();
+        attribute = new Attribute();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton_BR;
+    private javax.swing.JButton jButton_Bigger;
+    private javax.swing.JButton jButton_Bold;
+    private javax.swing.JButton jButton_Color;
     private javax.swing.JButton jButton_Default_A;
     private javax.swing.JButton jButton_Default_DIV;
     private javax.swing.JButton jButton_Default_H1;
@@ -1502,30 +1904,48 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Default_TR;
     private javax.swing.JButton jButton_Default_UL;
     private javax.swing.JButton jButton_Form;
+    private javax.swing.JButton jButton_Form_Input;
+    private javax.swing.JButton jButton_Form_InputCheckbox;
+    private javax.swing.JButton jButton_Form_InputPassword;
+    private javax.swing.JButton jButton_Form_InputRadio;
+    private javax.swing.JButton jButton_Form_InputSubmit;
+    private javax.swing.JButton jButton_Form_InputText;
+    private javax.swing.JButton jButton_Form_Main;
     private javax.swing.JButton jButton_HR;
+    private javax.swing.JButton jButton_Highlight;
+    private javax.swing.JButton jButton_Img_Alt;
+    private javax.swing.JButton jButton_Img_Alt1;
+    private javax.swing.JButton jButton_Img_Height;
+    private javax.swing.JButton jButton_Img_Main;
+    private javax.swing.JButton jButton_Img_Src;
+    private javax.swing.JButton jButton_Img_Width;
+    private javax.swing.JButton jButton_Img_Width1;
+    private javax.swing.JButton jButton_Italic;
+    private javax.swing.JButton jButton_Link_HREF;
+    private javax.swing.JButton jButton_Link_Id;
+    private javax.swing.JButton jButton_Link_Main;
+    private javax.swing.JButton jButton_Smaller;
     private javax.swing.JButton jButton_TABLE;
+    private javax.swing.JButton jButton_Underline;
     private javax.swing.JComboBox jComboBox_Font;
     private javax.swing.JEditorPane jEditorPane_Preview;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel_ParagraphName;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
-    private javax.swing.JMenu jMenu12;
-    private javax.swing.JMenu jMenu13;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar_Main;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
@@ -1533,25 +1953,13 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
-    private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem34;
     private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem36;
-    private javax.swing.JMenuItem jMenuItem37;
-    private javax.swing.JMenuItem jMenuItem38;
-    private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem40;
-    private javax.swing.JMenuItem jMenuItem41;
-    private javax.swing.JMenuItem jMenuItem42;
-    private javax.swing.JMenuItem jMenuItem43;
-    private javax.swing.JMenuItem jMenuItem44;
-    private javax.swing.JMenuItem jMenuItem45;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItem_Breakline;
     private javax.swing.JMenuItem jMenuItem_FormPlain;
     private javax.swing.JMenuItem jMenuItem_H1;
@@ -1563,6 +1971,7 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_HorizonLine;
     private javax.swing.JMenuItem jMenuItem_IMG;
     private javax.swing.JMenuItem jMenuItem_Link;
+    private javax.swing.JMenuItem jMenuItem_List;
     private javax.swing.JMenuItem jMenuItem_Paragraoh;
     private javax.swing.JMenuItem jMenuItem_Title;
     private javax.swing.JMenuItem jMenu_Metal;
@@ -1571,14 +1980,16 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu_Style;
     private javax.swing.JMenuItem jMenu_Windows;
     private javax.swing.JMenuItem jMenu_WindowsClassic;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_Control;
     private javax.swing.JPanel jPanel_Default;
     private javax.swing.JPanel jPanel_Default_HTML;
-    private javax.swing.JPanel jPanel_Heading;
+    private javax.swing.JPanel jPanel_Form;
     private javax.swing.JPanel jPanel_Image;
+    private javax.swing.JPanel jPanel_Image1;
     private javax.swing.JPanel jPanel_Link;
-    private javax.swing.JPanel jPanel_Paragraph;
+    private javax.swing.JPanel jPanel_Link_Att;
+    private javax.swing.JPanel jPanel_Link_Att1;
+    private javax.swing.JPanel jPanel_Link_Att2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
@@ -1587,14 +1998,15 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
-    private javax.swing.JPopupMenu.Separator jSeparator17;
     private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JSeparator jSeparator20;
+    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator22;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
@@ -1611,12 +2023,9 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JButton jbut_NewFile;
     private javax.swing.JButton jbut_OpenFile;
     private javax.swing.JButton jbut_SaveFile;
-    private javax.swing.JMenuItem jmenu_Copy;
-    private javax.swing.JMenu jmenu_Edit;
     private javax.swing.JMenuItem jmenu_Exit;
     private javax.swing.JMenu jmenu_File;
     private javax.swing.JMenu jmenu_Help;
-    private javax.swing.JMenuItem jmenu_Paste;
     private javax.swing.JMenuItem jmenu_newFile;
     private javax.swing.JMenuItem jmenu_openFile;
     private javax.swing.JMenuItem jmenu_saveFile;

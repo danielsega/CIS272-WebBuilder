@@ -13,7 +13,7 @@ import cis272_project.Model.ElementManager;
  * @author GW
  */
 public class Element {
-    private ElementManager eManager;
+    private final ElementManager eManager;
     
     public Element(){
         eManager = new ElementManager();
@@ -23,4 +23,7 @@ public class Element {
         return eManager.addSingleElements(source, type);
     }
 
+    public String addElementCss(String source, ElementManager.Type type, String css){
+        return eManager.addElementsCss(source, type, css);
+    }
 }

@@ -26,14 +26,22 @@ public class ElementManager {
         tr,
         td,
         iframe,
-        title
+        title,
+        small,
+        big
     }
     
     public String addSingleElements(String source, Type type){
-        String main = source;
         String element = type.name();
         
         String result = "<" + element + ">" + source + "</" + element + ">";
+        return result;
+    }
+    
+    public String addElementsCss(String source, Type type, String css){
+        String element = type.name();
+        
+        String result = "<" + element + " style=\""+ css + "\">" + source + "</" + element + ">";
         return result;
     }
 }
