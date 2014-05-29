@@ -19,6 +19,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="New File"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenu_newFileActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmenu_openFile">
               <Properties>
@@ -44,6 +47,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Save File"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenu_saveFileActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -112,10 +118,29 @@
                 <Property name="text" type="java.lang.String" value="Font"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem21">
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontArial">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Arial"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontArialActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontTimes">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Times"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontTimesActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontCourier">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Courier"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontCourierActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -124,67 +149,88 @@
                 <Property name="text" type="java.lang.String" value="Size"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem24">
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontSmall">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cis272_project/Assets/smaller.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Smaller Font"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontSmallActionPerformed"/>
+                  </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem25">
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontBig">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/cis272_project/Assets/bigger.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Bigger Font"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontBigActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator8">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem19">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontBold">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cis272_project/Assets/Bold.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Bold"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontBoldActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem22">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontItalic">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cis272_project/Assets/Italic.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Italic"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontItalicActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem23">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontUnderline">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cis272_project/Assets/Underline.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Underline"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontUnderlineActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator13">
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem26">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_FontColor">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cis272_project/Assets/color.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Color"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FontColorActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem27">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Fonthighlight">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cis272_project/Assets/highlight.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Highlight"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_FonthighlightActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -321,26 +367,41 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="List"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_ListActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem32">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Table">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Table"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_TableActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem35">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Div">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Div"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_DivActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem36">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Span">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Span"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_SpanActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem34">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Iframe">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Iframe"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_IframeActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator16">
             </MenuItem>
@@ -349,10 +410,13 @@
                 <Property name="text" type="java.lang.String" value="Entities"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Entity">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Space"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_EntityActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

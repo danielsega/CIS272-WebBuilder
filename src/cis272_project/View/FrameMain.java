@@ -21,8 +21,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JColorChooser;
@@ -176,17 +174,19 @@ public class FrameMain extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
-        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem_FontArial = new javax.swing.JMenuItem();
+        jMenuItem_FontTimes = new javax.swing.JMenuItem();
+        jMenuItem_FontCourier = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
-        jMenuItem24 = new javax.swing.JMenuItem();
-        jMenuItem25 = new javax.swing.JMenuItem();
+        jMenuItem_FontSmall = new javax.swing.JMenuItem();
+        jMenuItem_FontBig = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem19 = new javax.swing.JMenuItem();
-        jMenuItem22 = new javax.swing.JMenuItem();
-        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem_FontBold = new javax.swing.JMenuItem();
+        jMenuItem_FontItalic = new javax.swing.JMenuItem();
+        jMenuItem_FontUnderline = new javax.swing.JMenuItem();
         jSeparator13 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem26 = new javax.swing.JMenuItem();
-        jMenuItem27 = new javax.swing.JMenuItem();
+        jMenuItem_FontColor = new javax.swing.JMenuItem();
+        jMenuItem_Fonthighlight = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem_H1 = new javax.swing.JMenuItem();
@@ -207,13 +207,13 @@ public class FrameMain extends javax.swing.JFrame {
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
         jMenuItem_Title = new javax.swing.JMenuItem();
         jMenuItem_List = new javax.swing.JMenuItem();
-        jMenuItem32 = new javax.swing.JMenuItem();
-        jMenuItem35 = new javax.swing.JMenuItem();
-        jMenuItem36 = new javax.swing.JMenuItem();
-        jMenuItem34 = new javax.swing.JMenuItem();
+        jMenuItem_Table = new javax.swing.JMenuItem();
+        jMenuItem_Div = new javax.swing.JMenuItem();
+        jMenuItem_Span = new javax.swing.JMenuItem();
+        jMenuItem_Iframe = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenu10 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem_Entity = new javax.swing.JMenuItem();
         jmenu_Help = new javax.swing.JMenu();
         jMenu_Style = new javax.swing.JMenu();
         jMenu_Nimbus = new javax.swing.JMenuItem();
@@ -1068,6 +1068,11 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_newFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jmenu_newFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/New document.png"))); // NOI18N
         jmenu_newFile.setText("New File");
+        jmenu_newFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenu_newFileActionPerformed(evt);
+            }
+        });
         jmenu_File.add(jmenu_newFile);
 
         jmenu_openFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
@@ -1083,6 +1088,11 @@ public class FrameMain extends javax.swing.JFrame {
         jmenu_saveFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jmenu_saveFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/save.png"))); // NOI18N
         jmenu_saveFile.setText("Save File");
+        jmenu_saveFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenu_saveFileActionPerformed(evt);
+            }
+        });
         jmenu_File.add(jmenu_saveFile);
         jmenu_File.add(jSeparator1);
 
@@ -1133,44 +1143,100 @@ public class FrameMain extends javax.swing.JFrame {
 
         jMenu7.setText("Font");
 
-        jMenuItem21.setText("Arial");
-        jMenu7.add(jMenuItem21);
+        jMenuItem_FontArial.setText("Arial");
+        jMenuItem_FontArial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontArialActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem_FontArial);
+
+        jMenuItem_FontTimes.setText("Times");
+        jMenuItem_FontTimes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontTimesActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem_FontTimes);
+
+        jMenuItem_FontCourier.setText("Courier");
+        jMenuItem_FontCourier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontCourierActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem_FontCourier);
 
         jMenu2.add(jMenu7);
 
         jMenu8.setText("Size");
 
-        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/smaller.png"))); // NOI18N
-        jMenuItem24.setText("Smaller Font");
-        jMenu8.add(jMenuItem24);
+        jMenuItem_FontSmall.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/smaller.png"))); // NOI18N
+        jMenuItem_FontSmall.setText("Smaller Font");
+        jMenuItem_FontSmall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontSmallActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem_FontSmall);
 
-        jMenuItem25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/bigger.png"))); // NOI18N
-        jMenuItem25.setText("Bigger Font");
-        jMenu8.add(jMenuItem25);
+        jMenuItem_FontBig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/bigger.png"))); // NOI18N
+        jMenuItem_FontBig.setText("Bigger Font");
+        jMenuItem_FontBig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontBigActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem_FontBig);
 
         jMenu2.add(jMenu8);
         jMenu2.add(jSeparator8);
 
-        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Bold.png"))); // NOI18N
-        jMenuItem19.setText("Bold");
-        jMenu2.add(jMenuItem19);
+        jMenuItem_FontBold.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Bold.png"))); // NOI18N
+        jMenuItem_FontBold.setText("Bold");
+        jMenuItem_FontBold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontBoldActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem_FontBold);
 
-        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Italic.png"))); // NOI18N
-        jMenuItem22.setText("Italic");
-        jMenu2.add(jMenuItem22);
+        jMenuItem_FontItalic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Italic.png"))); // NOI18N
+        jMenuItem_FontItalic.setText("Italic");
+        jMenuItem_FontItalic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontItalicActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem_FontItalic);
 
-        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Underline.png"))); // NOI18N
-        jMenuItem23.setText("Underline");
-        jMenu2.add(jMenuItem23);
+        jMenuItem_FontUnderline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/Underline.png"))); // NOI18N
+        jMenuItem_FontUnderline.setText("Underline");
+        jMenuItem_FontUnderline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontUnderlineActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem_FontUnderline);
         jMenu2.add(jSeparator13);
 
-        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/color.png"))); // NOI18N
-        jMenuItem26.setText("Color");
-        jMenu2.add(jMenuItem26);
+        jMenuItem_FontColor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/color.png"))); // NOI18N
+        jMenuItem_FontColor.setText("Color");
+        jMenuItem_FontColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FontColorActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem_FontColor);
 
-        jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/highlight.png"))); // NOI18N
-        jMenuItem27.setText("Highlight");
-        jMenu2.add(jMenuItem27);
+        jMenuItem_Fonthighlight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cis272_project/Assets/highlight.png"))); // NOI18N
+        jMenuItem_Fonthighlight.setText("Highlight");
+        jMenuItem_Fonthighlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_FonthighlightActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem_Fonthighlight);
 
         jMenuBar_Main.add(jMenu2);
 
@@ -1292,25 +1358,55 @@ public class FrameMain extends javax.swing.JFrame {
         jMenu3.add(jMenuItem_Title);
 
         jMenuItem_List.setText("List");
+        jMenuItem_List.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_ListActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem_List);
 
-        jMenuItem32.setText("Table");
-        jMenu3.add(jMenuItem32);
+        jMenuItem_Table.setText("Table");
+        jMenuItem_Table.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_TableActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_Table);
 
-        jMenuItem35.setText("Div");
-        jMenu3.add(jMenuItem35);
+        jMenuItem_Div.setText("Div");
+        jMenuItem_Div.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_DivActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_Div);
 
-        jMenuItem36.setText("Span");
-        jMenu3.add(jMenuItem36);
+        jMenuItem_Span.setText("Span");
+        jMenuItem_Span.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_SpanActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_Span);
 
-        jMenuItem34.setText("Iframe");
-        jMenu3.add(jMenuItem34);
+        jMenuItem_Iframe.setText("Iframe");
+        jMenuItem_Iframe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_IframeActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem_Iframe);
         jMenu3.add(jSeparator16);
 
         jMenu10.setText("Entities");
 
-        jMenuItem1.setText("Space");
-        jMenu10.add(jMenuItem1);
+        jMenuItem_Entity.setText("Space");
+        jMenuItem_Entity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_EntityActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem_Entity);
 
         jMenu3.add(jMenu10);
 
@@ -1397,12 +1493,12 @@ public class FrameMain extends javax.swing.JFrame {
 
     private void jmenu_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_ExitActionPerformed
         int dialogButton = JOptionPane.YES_NO_OPTION;
-        JOptionPane.showConfirmDialog(null, "Would You Like to Save the file before exiting?","Exit",dialogButton);
-        
-        if(dialogButton == JOptionPane.YES_OPTION){
+        JOptionPane.showConfirmDialog(null, "Would You Like to Save the file before exiting?", "Exit", dialogButton);
+
+        if (dialogButton == JOptionPane.YES_OPTION) {
             saveFile();
             System.exit(1);
-        }else{
+        } else {
             System.exit(1);
         }
     }//GEN-LAST:event_jmenu_ExitActionPerformed
@@ -1546,7 +1642,7 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_HRActionPerformed
 
     private void jButton_Default_SPACEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Default_SPACEActionPerformed
-        addEntity("&nbsp");        // TODO add your handling code here:
+        addEntity("&nbsp");
     }//GEN-LAST:event_jButton_Default_SPACEActionPerformed
 
     private void jMenuItem_H2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_H2ActionPerformed
@@ -1578,7 +1674,7 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem_IMGActionPerformed
 
     private void jMenuItem_FormPlainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FormPlainActionPerformed
-        addCommand(jPanel_Default, ElementManager.Type.form);
+        addCommand(jPanel_Form, ElementManager.Type.form);
     }//GEN-LAST:event_jMenuItem_FormPlainActionPerformed
 
     private void jButton_Link_MainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Link_MainActionPerformed
@@ -1598,19 +1694,11 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Link_HREFActionPerformed
 
     private void jButton_ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ColorActionPerformed
-        Color color = JColorChooser.showDialog(this, "Choose a color", Color.black);
-        elementCss(ElementManager.Type.span, "color: rgb(" + color.getRed()
-                + " , " + color.getGreen()
-                + " , " + color.getBlue()
-                + ");");
+        fontColor();
     }//GEN-LAST:event_jButton_ColorActionPerformed
 
     private void jButton_HighlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_HighlightActionPerformed
-        Color color = JColorChooser.showDialog(this, "Choose a color", Color.yellow);
-        elementCss(ElementManager.Type.span, "background-color: rgb(" + color.getRed()
-                + " , " + color.getGreen()
-                + " , " + color.getBlue()
-                + ");");
+        fontHighlight();
     }//GEN-LAST:event_jButton_HighlightActionPerformed
 
     private void jButton_Img_SrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Img_SrcActionPerformed
@@ -1720,9 +1808,80 @@ public class FrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jbut_SaveFileActionPerformed
 
     private void jbut_NewFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbut_NewFileActionPerformed
-        currentFile = null;
-        jTextPane_Source.setText(blankHTML);
+        newFile();
     }//GEN-LAST:event_jbut_NewFileActionPerformed
+
+    private void jmenu_newFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_newFileActionPerformed
+        newFile();
+    }//GEN-LAST:event_jmenu_newFileActionPerformed
+
+    private void jmenu_saveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_saveFileActionPerformed
+        saveFile();
+    }//GEN-LAST:event_jmenu_saveFileActionPerformed
+
+    private void jMenuItem_FontArialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontArialActionPerformed
+        elementCss(ElementManager.Type.span, "font-family: Helvetica,Arial,sans-serif;");
+    }//GEN-LAST:event_jMenuItem_FontArialActionPerformed
+
+    private void jMenuItem_FontTimesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontTimesActionPerformed
+        elementCss(ElementManager.Type.span, "font-family: Times New Roman,Times,serif;");
+    }//GEN-LAST:event_jMenuItem_FontTimesActionPerformed
+
+    private void jMenuItem_FontCourierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontCourierActionPerformed
+        elementCss(ElementManager.Type.span, "font-family: Courier New,Courier,monospace;");
+    }//GEN-LAST:event_jMenuItem_FontCourierActionPerformed
+
+    private void jMenuItem_FontSmallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontSmallActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.small);
+    }//GEN-LAST:event_jMenuItem_FontSmallActionPerformed
+
+    private void jMenuItem_FontBigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontBigActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.big);
+    }//GEN-LAST:event_jMenuItem_FontBigActionPerformed
+
+    private void jMenuItem_FontBoldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontBoldActionPerformed
+        elementCss(ElementManager.Type.span, "font-weight: bold;");
+    }//GEN-LAST:event_jMenuItem_FontBoldActionPerformed
+
+    private void jMenuItem_FontItalicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontItalicActionPerformed
+        elementCss(ElementManager.Type.span, "font-weight: italic;");
+    }//GEN-LAST:event_jMenuItem_FontItalicActionPerformed
+
+    private void jMenuItem_FontUnderlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontUnderlineActionPerformed
+        elementCss(ElementManager.Type.span, "font-weight: underline;");
+    }//GEN-LAST:event_jMenuItem_FontUnderlineActionPerformed
+
+    private void jMenuItem_FontColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FontColorActionPerformed
+        fontColor();
+    }//GEN-LAST:event_jMenuItem_FontColorActionPerformed
+
+    private void jMenuItem_FonthighlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_FonthighlightActionPerformed
+        fontHighlight();
+    }//GEN-LAST:event_jMenuItem_FonthighlightActionPerformed
+
+    private void jMenuItem_EntityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EntityActionPerformed
+        addEntity("&nbsp");
+    }//GEN-LAST:event_jMenuItem_EntityActionPerformed
+
+    private void jMenuItem_IframeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_IframeActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.iframe);
+    }//GEN-LAST:event_jMenuItem_IframeActionPerformed
+
+    private void jMenuItem_SpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_SpanActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.span);
+    }//GEN-LAST:event_jMenuItem_SpanActionPerformed
+
+    private void jMenuItem_DivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_DivActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.div);
+    }//GEN-LAST:event_jMenuItem_DivActionPerformed
+
+    private void jMenuItem_TableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TableActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.table);
+    }//GEN-LAST:event_jMenuItem_TableActionPerformed
+
+    private void jMenuItem_ListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ListActionPerformed
+        addCommand(jPanel_Default, ElementManager.Type.ul);
+    }//GEN-LAST:event_jMenuItem_ListActionPerformed
 
     //--This will change the style of the application
     private void changeLookAndFeel(LookAndFeel laf) {
@@ -1737,15 +1896,20 @@ public class FrameMain extends javax.swing.JFrame {
 
     //--This will open the default browser
     private void openBrowser() {
-        if (currentFile != null) {
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        JOptionPane.showConfirmDialog(null, "You need to save to see the Browser?", "Browse", dialogButton);
+
+        if (dialogButton == JOptionPane.YES_OPTION) {
+            saveFile();
             if (Desktop.isDesktopSupported()) {
                 try {
-                    Desktop.getDesktop().browse(new URI(currentFile.getAbsolutePath()));
-                } catch (IOException | URISyntaxException ex) {
+                    Desktop.getDesktop().browse(currentFile.toURI());
+                } catch (IOException ex) {
                     Logger.getLogger(FrameMain.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
+
     }
 
     //--This will add simple elements
@@ -1883,8 +2047,13 @@ public class FrameMain extends javax.swing.JFrame {
                     setTitle(TITLE + ": " + fileName);
                     currentFile = chooser.getSelectedFile();
                 }
-                //}
-                bw = new BufferedWriter(new FileWriter(chooser.getSelectedFile()));
+                String fixedLocation = chooser.getSelectedFile().getAbsolutePath();
+
+                if (!fixedLocation.endsWith(".html")) {
+                    fixedLocation += ".html";
+                    System.out.println(fixedLocation);
+                }
+                bw = new BufferedWriter(new FileWriter(fixedLocation));
                 String[] lines = jTextPane_Source.getText().split("\\n");
 
                 for (int i = 0; i < lines.length; i++) {
@@ -1926,8 +2095,13 @@ public class FrameMain extends javax.swing.JFrame {
                 reader.close();
             } catch (IOException e) {
             }
-            
+
         }
+    }
+
+    private void newFile() {
+        currentFile = null;
+        jTextPane_Source.setText(blankHTML);
     }
 
     /**
@@ -2045,23 +2219,22 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar_Main;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem21;
-    private javax.swing.JMenuItem jMenuItem22;
-    private javax.swing.JMenuItem jMenuItem23;
-    private javax.swing.JMenuItem jMenuItem24;
-    private javax.swing.JMenuItem jMenuItem25;
-    private javax.swing.JMenuItem jMenuItem26;
-    private javax.swing.JMenuItem jMenuItem27;
-    private javax.swing.JMenuItem jMenuItem32;
-    private javax.swing.JMenuItem jMenuItem34;
-    private javax.swing.JMenuItem jMenuItem35;
-    private javax.swing.JMenuItem jMenuItem36;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem_Breakline;
+    private javax.swing.JMenuItem jMenuItem_Div;
+    private javax.swing.JMenuItem jMenuItem_Entity;
+    private javax.swing.JMenuItem jMenuItem_FontArial;
+    private javax.swing.JMenuItem jMenuItem_FontBig;
+    private javax.swing.JMenuItem jMenuItem_FontBold;
+    private javax.swing.JMenuItem jMenuItem_FontColor;
+    private javax.swing.JMenuItem jMenuItem_FontCourier;
+    private javax.swing.JMenuItem jMenuItem_FontItalic;
+    private javax.swing.JMenuItem jMenuItem_FontSmall;
+    private javax.swing.JMenuItem jMenuItem_FontTimes;
+    private javax.swing.JMenuItem jMenuItem_FontUnderline;
+    private javax.swing.JMenuItem jMenuItem_Fonthighlight;
     private javax.swing.JMenuItem jMenuItem_FormPlain;
     private javax.swing.JMenuItem jMenuItem_H1;
     private javax.swing.JMenuItem jMenuItem_H2;
@@ -2071,9 +2244,12 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem_H6;
     private javax.swing.JMenuItem jMenuItem_HorizonLine;
     private javax.swing.JMenuItem jMenuItem_IMG;
+    private javax.swing.JMenuItem jMenuItem_Iframe;
     private javax.swing.JMenuItem jMenuItem_Link;
     private javax.swing.JMenuItem jMenuItem_List;
     private javax.swing.JMenuItem jMenuItem_Paragraoh;
+    private javax.swing.JMenuItem jMenuItem_Span;
+    private javax.swing.JMenuItem jMenuItem_Table;
     private javax.swing.JMenuItem jMenuItem_Title;
     private javax.swing.JMenuItem jMenu_Metal;
     private javax.swing.JMenuItem jMenu_Motif;
@@ -2135,4 +2311,20 @@ public class FrameMain extends javax.swing.JFrame {
     private javax.swing.JPanel jpan_Main;
     private javax.swing.JTabbedPane jtab_Main;
     // End of variables declaration//GEN-END:variables
+
+    private void fontColor() {
+        Color color = JColorChooser.showDialog(this, "Choose a color", Color.black);
+        elementCss(ElementManager.Type.span, "color: rgb(" + color.getRed()
+                + " , " + color.getGreen()
+                + " , " + color.getBlue()
+                + ");");
+    }
+
+    private void fontHighlight() {
+        Color color = JColorChooser.showDialog(this, "Choose a color", Color.yellow);
+        elementCss(ElementManager.Type.span, "background-color: rgb(" + color.getRed()
+                + " , " + color.getGreen()
+                + " , " + color.getBlue()
+                + ");");
+    }
 }
